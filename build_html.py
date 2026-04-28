@@ -147,6 +147,13 @@ article.issue a {
   border-bottom: 1px solid var(--rule);
   padding-bottom: 0.5rem;
 }
+.recipe .recipe-desc {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-style: italic;
+  color: #4a3a2c;
+  font-size: 0.95rem;
+}
 .recipe .ingredients {
   list-style: none;
   margin: 0;
@@ -161,6 +168,13 @@ article.issue a {
 }
 .recipe .ingredients li:last-child { border-bottom: none; }
 .recipe .ingredients strong { color: var(--ink); }
+.recipe .ingredients .ing-section {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.75em;
+  color: var(--muted);
+  margin-right: 0.4em;
+}
 .recipe .method {
   font-style: italic;
   color: #4a3a2c;
@@ -290,59 +304,159 @@ def first_meaningful(segment: list):
     return None
 
 
+# Ingredient lines virtually always start with a quantity glyph (digit or fraction).
+INGREDIENT_LEAD = re.compile(r"^[\s\W]*[\d¼½¾⅓⅔⅛⅜⅝⅞]")
+SECTION_METHOD = {"directions", "method", "instructions", "preparation", "to make"}
+SECTION_OTHER = {"equipment", "notes", "garnish"}
+
+
+def looks_like_ingredient(text: str) -> bool:
+    text = text.strip()
+    if not text:
+        return False
+    return bool(INGREDIENT_LEAD.match(text))
+
+
+def non_empty(segments: list) -> list:
+    return [s for s in segments if segment_text(s)]
+
+
 def is_recipe_paragraph(p: Tag) -> bool:
-    """Recipe = <p> starting with <strong> title, br-separated ingredients, italic method."""
-    segments = split_by_br(p)
+    """Recipe = <p> starting with a <strong> title and structured ingredient lines.
+
+    The original heuristic required the last segment to be italic (the method).
+    That rejects recipes that lead with an italic description and end with a
+    plain-text method (Vol 5 style). Relax to: title + <strong>, plus either
+    italic somewhere in the body or ≥2 ingredient-shaped lines.
+    """
+    segments = non_empty(split_by_br(p))
     if len(segments) < 3:
         return False
     head = first_meaningful(segments[0])
     if not (isinstance(head, Tag) and head.name == "strong"):
         return False
-    # Title-only first segment (the <strong> is essentially the whole segment)
-    title_text = segment_text(segments[0])
-    strong_text = head.get_text().strip()
-    if title_text != strong_text:
+    if segment_text(segments[0]) != head.get_text().strip():
         return False
-    # The last non-empty segment should contain an <em> (the italic method).
-    # Walk back skipping empties just in case.
-    last = None
-    for seg in reversed(segments):
-        if segment_text(seg):
-            last = seg
-            break
-    if last is None:
-        return False
-    has_em = any(isinstance(n, Tag) and n.name == "em" for n in last)
-    return has_em
+    middle = segments[1:]
+    has_em = any(
+        any(isinstance(n, Tag) and n.name == "em" for n in seg) for seg in middle
+    )
+    ingredient_count = sum(1 for s in middle if looks_like_ingredient(segment_text(s)))
+    if has_em and ingredient_count >= 1:
+        return True
+    if ingredient_count >= 2:
+        return True
+    return False
 
 
 def extract_recipe(p: Tag) -> dict:
-    segments = split_by_br(p)
+    segments = non_empty(split_by_br(p))
     title = first_meaningful(segments[0]).get_text().strip()
-    # Identify the index of the last non-empty segment (the method)
-    method_idx = len(segments) - 1
-    while method_idx > 0 and not segment_text(segments[method_idx]):
-        method_idx -= 1
-    ingredients = []
-    for seg in segments[1:method_idx]:
-        html = segment_html(seg)
-        if html:
-            ingredients.append(html)
-    method_html = segment_html(segments[method_idx])
-    # Strip wrapping <em> if the entire method is one italic block
-    m = re.fullmatch(r"<em>(.*)</em>", method_html, flags=re.DOTALL)
-    if m:
-        method_html = m.group(1)
-    return {"title": title, "ingredients": ingredients, "method_html": method_html}
+
+    body_start = 1
+    description_html = None
+    if len(segments) > 1:
+        seg1_html = segment_html(segments[1])
+        seg1_text = segment_text(segments[1])
+        m = re.fullmatch(r"<em>(.*)</em>", seg1_html, flags=re.DOTALL)
+        if m and not looks_like_ingredient(seg1_text):
+            description_html = m.group(1)
+            body_start = 2
+
+    # Method = trailing segments that don't look like ingredients (italic prose
+    # OR plain-text instructions, possibly across multiple lines such as a
+    # closing remark). Walk backwards from end and stop at the first ingredient.
+    # If the whole tail is ingredients (mug-cake style), leave method empty —
+    # a continuation paragraph may carry it.
+    end = len(segments)
+    method_start = end
+    while method_start > body_start and not looks_like_ingredient(
+        segment_text(segments[method_start - 1])
+    ):
+        method_start -= 1
+
+    # Require at least one ingredient between body_start and method_start.
+    method_html = ""
+    if method_start > body_start and method_start < end:
+        parts = []
+        for s in segments[method_start:end]:
+            h = segment_html(s)
+            m = re.fullmatch(r"<em>(.*)</em>", h, flags=re.DOTALL)
+            if m:
+                h = m.group(1)
+            parts.append(h)
+        method_html = "<br/>".join(parts)
+        end = method_start
+
+    ingredients = [segment_html(s) for s in segments[body_start:end]]
+
+    return {
+        "title": title,
+        "description_html": description_html,
+        "ingredients": ingredients,
+        "method_html": method_html,
+    }
+
+
+def is_continuation_para(p) -> bool:
+    """A paragraph that extends the preceding recipe (more ingredients, or a
+    'Directions' / 'Equipment' section). Bails on anything containing images
+    or a new <strong> title."""
+    if not isinstance(p, Tag) or p.name != "p":
+        return False
+    if p.find("img") or p.find("strong"):
+        return False
+    segments = non_empty(split_by_br(p))
+    if not segments:
+        return False
+    first_text = segment_text(segments[0]).strip().lower().rstrip(":")
+    if first_text in SECTION_METHOD or first_text in SECTION_OTHER:
+        return True
+    return all(looks_like_ingredient(segment_text(s)) for s in segments)
+
+
+def absorb_continuation(recipe: dict, p: Tag) -> None:
+    segments = non_empty(split_by_br(p))
+    if not segments:
+        return
+    first_text = segment_text(segments[0]).strip().lower().rstrip(":")
+    if first_text in SECTION_METHOD:
+        steps = []
+        for s in segments[1:]:
+            line = segment_html(s)
+            line = re.sub(r"^[-•]\s*", "", line).strip()
+            if line:
+                steps.append(line)
+        method_block = "<br/>".join(steps)
+        recipe["method_html"] = (
+            recipe["method_html"] + "<br/><br/>" + method_block
+            if recipe["method_html"]
+            else method_block
+        )
+    elif first_text in SECTION_OTHER:
+        for s in segments[1:]:
+            recipe["ingredients"].append(
+                f'<span class="ing-section">{first_text}:</span> {segment_html(s)}'
+            )
+    else:
+        for s in segments:
+            recipe["ingredients"].append(segment_html(s))
 
 
 def render_recipe_card(recipe: dict, slug: str) -> str:
     ingredients_html = "\n".join(f"<li>{ing}</li>" for ing in recipe["ingredients"])
+    desc = ""
+    if recipe.get("description_html"):
+        desc = f'<p class="recipe-desc">{recipe["description_html"]}</p>'
+    method_block = ""
+    if recipe["method_html"]:
+        method_block = f'<div class="method"><p>{recipe["method_html"]}</p></div>'
     return (
         f'<div class="recipe" id="{slug}">'
         f'<h3 class="recipe-title">{recipe["title"]}</h3>'
+        f"{desc}"
         f'<ul class="ingredients">{ingredients_html}</ul>'
-        f'<div class="method"><p>{recipe["method_html"]}</p></div>'
+        f"{method_block}"
         f"</div>"
     )
 
@@ -353,12 +467,25 @@ def transform_recipes(
     soup = BeautifulSoup(body_html, "html.parser")
     seen_slugs: set[str] = set()
     for p in list(soup.find_all("p")):
+        # `p` may have been removed by an earlier absorption pass.
+        if p.parent is None:
+            continue
         if not is_recipe_paragraph(p):
             continue
         recipe = extract_recipe(p)
+
+        # Absorb continuation paragraphs (mug-cake style: ingredients/method
+        # split across multiple <p> blocks). Only walk forward through siblings;
+        # stop on the first non-continuation.
+        absorbed = []
+        sib = p.find_next_sibling()
+        while sib is not None and is_continuation_para(sib):
+            absorb_continuation(recipe, sib)
+            absorbed.append(sib)
+            sib = sib.find_next_sibling()
+
         base = slugify(recipe["title"])
         rslug = f"recipe-{issue_slug}-{base}"
-        # Disambiguate within an issue (e.g., two simple syrup variants)
         i = 2
         while rslug in seen_slugs:
             rslug = f"recipe-{issue_slug}-{base}-{i}"
@@ -374,6 +501,8 @@ def transform_recipes(
         )
         replacement = BeautifulSoup(render_recipe_card(recipe, rslug), "html.parser")
         p.replace_with(replacement)
+        for s in absorbed:
+            s.decompose()
     return str(soup)
 
 

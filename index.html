@@ -142,6 +142,13 @@ article.issue a {
   border-bottom: 1px solid var(--rule);
   padding-bottom: 0.5rem;
 }
+.recipe .recipe-desc {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-style: italic;
+  color: #4a3a2c;
+  font-size: 0.95rem;
+}
 .recipe .ingredients {
   list-style: none;
   margin: 0;
@@ -156,6 +163,13 @@ article.issue a {
 }
 .recipe .ingredients li:last-child { border-bottom: none; }
 .recipe .ingredients strong { color: var(--ink); }
+.recipe .ingredients .ing-section {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.75em;
+  color: var(--muted);
+  margin-right: 0.4em;
+}
 .recipe .method {
   font-style: italic;
   color: #4a3a2c;
@@ -272,10 +286,8 @@ section.recipe-index .issue-ref {
 <p>Hello, people!</p>
 <p>Your financial support means the world to our staff. We hope that this newsletter will serve as a small token of gratitude for your donation — <em>and</em> as a cute way to help us stay connected, stay home (when possible), and stay pleasantly occupied until we can meet over daily daiquiris once again.</p>
 <p>First things first, we’ve got two recipes in here that require a couple syrups — so, let’s make some syrup!</p>
-<p><strong>Coconut Cream</strong><br/>
-1 13.5 ounce can unsweetened coconut milk<br/>
-2 cups demerara sugar (like Sugar in the Raw!)<br/>
-Combine the coconut milk and sugar in a small saucepan set over medium-low heat. Whisk until the sugar dissolves and the mixture is smooth, about 5 minutes, then remove from the heat and let cool to room temperature. This recipe makes approximately 22 ounces. You can store in an airtight container in the fridge for about a week. This syrup will separate and that’s okay! Just give it a good shake before using.</p>
+<div class="recipe" id="recipe-2020-03-20-vol-01-welcome-coconut-cream"><h3 class="recipe-title">Coconut Cream</h3><ul class="ingredients"><li>1 13.5 ounce can unsweetened coconut milk</li>
+<li>2 cups demerara sugar (like Sugar in the Raw!)</li></ul><div class="method"><p>Combine the coconut milk and sugar in a small saucepan set over medium-low heat. Whisk until the sugar dissolves and the mixture is smooth, about 5 minutes, then remove from the heat and let cool to room temperature. This recipe makes approximately 22 ounces. You can store in an airtight container in the fridge for about a week. This syrup will separate and that’s okay! Just give it a good shake before using.</p></div></div>
 <p><strong>Cinnamon Syrup</strong><br/>
 Whip up some simple syrup (equal parts white sugar and water, stirred over heat until all the crystals dissolve) and toss in a bunch of cinnamon sticks. Let it steep for at least 24 hours, strain out cinnamon.</p>
 <p><strong>Coffee Demerara Syrup</strong><br/>
@@ -289,13 +301,12 @@ Take some of that demerara sugar left over from making coconut cream, and mix eq
 <p>Come 10pm, Liz finally re-emerged from the basement and I was invited to have a drink at the bar AKA a “shifty.” I take a seat at the bar, and as I browse through the menu and I’m so distracted by how long the drink names are that I don’t know what to order! Vince rounds the corner and recommends that I order the Dusty Flamingo and the Hillbilly Lobo.</p>
 <p>The drink was perfect in both its flavor profile and as a shifty, because I was feeling like a dusty flamingo sitting at the bar at 1am in my flamingo-print shirt from Amazon. The drink is bold and rich to start, but the finish is light and dry — inviting you to take another sip or order another. (As would be my routine for the next month or so.)</p>
 <p>Thanks for reminiscing with me and enjoy this photo of my trying my actual first cocktail at Lost Lake.</p>
-<p><strong>Dusty Flamingo and the Hillbilly Lobo</strong><br/>
-2 oz tequila<br/>
-0.25 oz mezcal<br/>
-0.5 oz fino sherry<br/>
-1 oz coconut cream<br/>
-0.75 oz lime<br/>
-0.25 oz honey</p>
+<div class="recipe" id="recipe-2020-03-20-vol-01-welcome-dusty-flamingo-and-the-hillbilly-lobo"><h3 class="recipe-title">Dusty Flamingo and the Hillbilly Lobo</h3><ul class="ingredients"><li>2 oz tequila</li>
+<li>0.25 oz mezcal</li>
+<li>0.5 oz fino sherry</li>
+<li>1 oz coconut cream</li>
+<li>0.75 oz lime</li>
+<li>0.25 oz honey</li></ul></div>
 <p><em>Combine all ingredients in a cocktail shaker with one cup crushed ice. (You can just bust up a bunch of freezer ice with a rolling pin!) Give it a good shake for about 5 seconds, then pour the entire contents into your cutest glass (we call that a 'dirty dump' lol). Top with more crushed ice, and garnish with tropical things! We like nutmeg and toasted coconut on this one.</em></p>
 <h2>#OOTD</h2>
 <p><img alt="" src="images/vol-01-welcome-02.jpg"/></p>
@@ -310,13 +321,11 @@ Take some of that demerara sugar left over from making coconut cream, and mix eq
 Moving fast through your own space<br/>
 It’s just a reflex</p>
 <p>Life comes at you fast, news seems to come even faster. Take the time to slow down and simmer. Put a pot on and whip up a hearty batch of congee, a warm and gratifying rice porridge. Originating in China, congee is now widely enjoyed in 15 countries throughout Asia, each with their own variations. The dish is a blank canvas, subtle flavors just begging to be dressed up with the seasonings you desire. Satisfying all home flavor artists, anyone from the Rothkos to the Pollocks can find a mix they enjoy.</p>
-<p><strong>Eric's End of the World Garlic Ginger Congee</strong><br/>
-1 Tbsp vegetable oil<br/>
-1 cup rice<br/>
-6-8 cups water or half/half split with any stock you may have on hand<br/>
-5-6 cloves garlic (or more to taste)<br/>
-2 inch chunk ginger peeled (more or less to taste)<br/>
-Pinch of salt</p>
+<div class="recipe" id="recipe-2020-03-20-vol-01-welcome-eric-s-end-of-the-world-garlic-ginger-congee"><h3 class="recipe-title">Eric's End of the World Garlic Ginger Congee</h3><ul class="ingredients"><li>1 Tbsp vegetable oil</li>
+<li>1 cup rice</li>
+<li>6-8 cups water or half/half split with any stock you may have on hand</li>
+<li>5-6 cloves garlic (or more to taste)</li>
+<li>2 inch chunk ginger peeled (more or less to taste)</li></ul><div class="method"><p>Pinch of salt</p></div></div>
 <p>*Mince garlic and ginger. You can use a microplane for this (thank you Chef Fred Noinaj for the pro-tip). Heat oil in a pot over medium high heat. A ceramic coated Dutch oven works great, but your favorite soup pot will do the trick. Add garlic and ginger to the oil and cook until fragrant. Add rice and stir in until the rice is coated and mixed. Add water/stock, bring to boil and reduce to simmer, stirring occasionally to avoid scorching. It will get sticky. Let cook for 45-60 minutes, or longer until it reaches the desired thiccness.</p>
 <p>Serving suggestions: Sambal or sriracha or your favorite hot sauce. Soy sauce. Chopped scallions for a bright crunch. Stewed or crispy fried meats or tofu. Sauteed or roasted vegetables (spinach and broccoli work nicely). Pickled vegetables (onions or jalapeños if you’re feeling spicy). Eggs. Soft-boiled are my favorite, but fried or hard boiled eggs will get the job done.*</p>
 <h2>WORD UP (AND DOWN) (AND ACROSS)</h2>
@@ -325,14 +334,13 @@ Pinch of salt</p>
 <h2>SOMETHING FROM NOTHING</h2>
 <p><img alt="" src="images/vol-01-welcome-05.jpg"/></p>
 <p>Making something from nothing is taking on a whole new meaning these days. Here's a bourbon-based fave from last year's cocktail menu!</p>
-<p><strong>SOMETHING FROM NOTHING</strong><br/>
-1 oz bourbon<br/>
-1 oz aged Barbados rum<br/>
-0.5 oz coconut cream<br/>
-0.5 oz coffee demerara syrup<br/>
-1 oz cold brew (or, um, these days cold coffee will surely do)<br/>
-0.5 oz cinnamon syrup<br/>
-0.5 oz lemon juice</p>
+<div class="recipe" id="recipe-2020-03-20-vol-01-welcome-something-from-nothing"><h3 class="recipe-title">SOMETHING FROM NOTHING</h3><ul class="ingredients"><li>1 oz bourbon</li>
+<li>1 oz aged Barbados rum</li>
+<li>0.5 oz coconut cream</li>
+<li>0.5 oz coffee demerara syrup</li>
+<li>1 oz cold brew (or, um, these days cold coffee will surely do)</li>
+<li>0.5 oz cinnamon syrup</li>
+<li>0.5 oz lemon juice</li></ul></div>
 <p>*Combine all ingredients in a cocktail shaker with one cup crushed ice. (You can just bust up a bunch of freezer ice with a rolling pin!) Give it a good shake for about 5 seconds, then pour the entire contents into your cutest glass (we call that a 'dirty dump' lol). Top with more crushed ice, and garnish with tropical things! We like cinnamon and a swizzle stick on this one.</p>
 <p>To make cinnamon syrup: whip up some simple syrup (equal parts sugar and water, stirred over heat until all the crystals dissolve) and toss in some cinnamon sticks. Let it steep for 24 hours, strain out cinnamon.</p>
 <p>To make coffee demerara syrup: take some of that demerara sugar left over from making coconut cream, and mix equal parts with coffee over heat until all the crystals dissolve.*</p>
@@ -359,8 +367,7 @@ Pinch of salt</p>
 <li>1 oz pineapple juice (Trader Joe's has the best non-fresh option!)</li>
 <li>.75 oz lime</li>
 <li>.75 bay leaf simple syrup</li>
-<li>.33 dropper Saline Solution</li>
-<li>barspoon of avocado oil</li></ul><div class="method"><p>Combine all ingredients in a cocktail shaker. Before you add ice, give it a little whisk or agitate it with a fork. Then add ice and shake that shit really, really, really hard — 'til it's too cold to hold! You need to put some work in to get that nice frothy head. Strain into a coupe glass, garnish with a bay leaf and cracked pepper.</p></div></div>
+<li>.33 dropper Saline Solution</li></ul><div class="method"><p>barspoon of avocado oil<br/>Combine all ingredients in a cocktail shaker. Before you add ice, give it a little whisk or agitate it with a fork. Then add ice and shake that shit really, really, really hard — 'til it's too cold to hold! You need to put some work in to get that nice frothy head. Strain into a coupe glass, garnish with a bay leaf and cracked pepper.</p></div></div>
 <p><strong>Bay Leaf Simple Syrup</strong><br/>
 <em>Mix equal parts white sugar and water over heat until all crystals dissolve. Add a bunch of bay leaves and let steep over low heat for one hour. Pluck out the leaves and let cool.</em></p>
 <p><strong>Saline Solution</strong><br/>
@@ -386,19 +393,12 @@ Seriously, people, it’s just booze. Have a little fun with it!</p>
 <p><img alt="" src="images/vol-02-03.png"/></p>
 <p><img alt="" src="images/vol-02-04.png"/></p>
 <p>Some highballin' ideas from Hannah:</p>
-<div class="recipe" id="recipe-2020-03-24-vol-02-a-walk-to-the-lake"><h3 class="recipe-title">A Walk to the Lake</h3><ul class="ingredients"><li>2oz tequila or mezcal</li>
-<li>Mexican Squirt</li>
-<li>half of a lime, quartered</li>
-<li>two pinches salt</li></ul><div class="method"><p>Combine booze and squirt in a glass with ice. Add lime and salt to taste. (If you’re feeling fancy, you can put the salt on the rim of the glass instead.)</p></div></div>
-<div class="recipe" id="recipe-2020-03-24-vol-02-picnic-ti-punch"><h3 class="recipe-title">Picnic Ti Punch</h3><ul class="ingredients"><li>2oz Clement Premiere Canne</li>
-<li>sparkling limeade</li>
-<li>lime wedge</li></ul><div class="method"><p>Pour rhum over ice. Top with sparkling limeade. Garnish with lime wedge.</p></div></div>
+<div class="recipe" id="recipe-2020-03-24-vol-02-a-walk-to-the-lake"><h3 class="recipe-title">A Walk to the Lake</h3><ul class="ingredients"><li>2oz tequila or mezcal</li></ul><div class="method"><p>Mexican Squirt<br/>half of a lime, quartered<br/>two pinches salt<br/>Combine booze and squirt in a glass with ice. Add lime and salt to taste. (If you’re feeling fancy, you can put the salt on the rim of the glass instead.)</p></div></div>
+<div class="recipe" id="recipe-2020-03-24-vol-02-picnic-ti-punch"><h3 class="recipe-title">Picnic Ti Punch</h3><ul class="ingredients"><li>2oz Clement Premiere Canne</li></ul><div class="method"><p>sparkling limeade<br/>lime wedge<br/>Pour rhum over ice. Top with sparkling limeade. Garnish with lime wedge.</p></div></div>
 <div class="recipe" id="recipe-2020-03-24-vol-02-not-quite-jb"><h3 class="recipe-title">Not Quite JB</h3><ul class="ingredients"><li>2oz Rum Bar White Overproof</li>
 <li>Mexican coke</li>
 <li>2 dashes Angostura Bitters</li></ul><div class="method"><p>Pour rum over ice, top with coke, add bitters, stir to combine.</p></div></div>
-<div class="recipe" id="recipe-2020-03-24-vol-02-ode-to-mama"><h3 class="recipe-title">Ode to Mama</h3><ul class="ingredients"><li>2oz Cynar</li>
-<li>Topo Chico</li>
-<li>lemon wedge</li></ul><div class="method"><p>Pour over ice, garnish with lemon wedge.</p></div></div>
+<div class="recipe" id="recipe-2020-03-24-vol-02-ode-to-mama"><h3 class="recipe-title">Ode to Mama</h3><ul class="ingredients"><li>2oz Cynar</li></ul><div class="method"><p>Topo Chico<br/>lemon wedge<br/>Pour over ice, garnish with lemon wedge.</p></div></div>
 <h2>DESIRA GOES TO TRELAWNY PARISH</h2>
 <p><img alt="" src="images/vol-02-05.jpeg"/></p>
 <p>Rum is one of the most diverse spirits in the world. A rum made by the hands of those in Guyana tastes nothing like that of a rum made in Martinique. Neither of which taste anything like a rum from Jamaica. Or Barbados. Or Panama. The list could go on and on. This is one of the things that can make rum both confusing and intriguing. So let’s just take a step back and focus on one geographic location: Jamaica.</p>
@@ -567,23 +567,19 @@ Shelby</p>
 <p><em>click it! it's a video!</em></p>
 <p>One of my best friends has been hyping up microwaved mug cakes for a while and she totally swears by them. I finally gave it a shot — and for not being a sweets person (besides ice cream, which would be excellent on this), I really enjoyed the outcome. I cook for a living so when I do cook for myself at home I keep it simple. Mug cakes are so easy, versatile, and really remind me of playing with an Easy Bake Oven as a kid. They are a perfect treat after a long day at work or if you randomly have a craving for something sweet. Anyone who cooks at home at all will have a majority of these items in their pantry. You can easily swap out the olive oil for butter, coconut oil, or other cooking oils. You can experiment with different amounts and kinds of sugar and milk too. It is a fun way to quickly make a satisfying dessert.</p>
 <p>Pro tip: Make a double batch of the mug cake and save the second one to make cake shakes!!! I used half a mug cake and big scoop of mint chip with some milk in the blender.</p>
-<p><strong>Vegan Chocolate Mug Cake</strong><br/>
-2 1/2 tbsp all purpose flour<br/>
-2 tbsp sugar<br/>
-1 1/2 tbs cocoa powder<br/>
-1/4 tsp baking soda<br/>
-1/8 tsp salt</p>
-<p>1 tbs olive oil or coconut oil<br/>
-3 tbs oat milk or almond milk<br/>
-1 tbs chocolate chips</p>
-<p>Equipment<br/>
-12-14 oz ceramic mug<br/>
-spoon or fork</p>
-<p>Directions<br/>
-- In the mug, add all your dry ingredients and mix.<br/>
-- Add the oil and oat milk, mix well<br/>
-- Top with chocolate chips<br/>
-- Microwave on high for 50 seconds, then check the consistency. Since I like mine only a <em>little</em> bit gooey, I go close to 55-60 seconds. It depends on your microwave, so play around with it — now is the time!</p>
+<div class="recipe" id="recipe-2020-03-31-vol-04-vegan-chocolate-mug-cake"><h3 class="recipe-title">Vegan Chocolate Mug Cake</h3><ul class="ingredients"><li>2 1/2 tbsp all purpose flour</li>
+<li>2 tbsp sugar</li>
+<li>1 1/2 tbs cocoa powder</li>
+<li>1/4 tsp baking soda</li>
+<li>1/8 tsp salt</li>
+<li>1 tbs olive oil or coconut oil</li>
+<li>3 tbs oat milk or almond milk</li>
+<li>1 tbs chocolate chips</li>
+<li><span class="ing-section">equipment:</span> 12-14 oz ceramic mug</li>
+<li><span class="ing-section">equipment:</span> spoon or fork</li></ul><div class="method"><p>In the mug, add all your dry ingredients and mix.<br/>Add the oil and oat milk, mix well<br/>Top with chocolate chips<br/>Microwave on high for 50 seconds, then check the consistency. Since I like mine only a <em>little</em> bit gooey, I go close to 55-60 seconds. It depends on your microwave, so play around with it — now is the time!</p></div></div>
+
+
+
 <h2>REQUEST LINE: SHERRY NO-NO</h2>
 <p><img alt="" src="images/vol-04-04.png"/></p>
 <p>This cocktail came through on the request line and I was so happy to see it! We created this cocktail to serve at the first pop-up we did with Chef Fred, before he started as our executive chef. There had been a fire at the bar the spring prior, and though it would eventually take over a year to resume food service, I had asked Fred to join our team very early on in the recovery process. A little <em>too</em> early. So early, in fact, that he spent more than a few months hanging out in the kitchen of Chicago Athletic Association while I told him "Next month, for sure!" about six times in a row. During that wait, we hosted a pop-up together called SAUCE + SAUCE! It was all backwards dishes and upside down cocktails. That's where Fred first shared his ketchup research with me (and with you in last Thursday's newsletter!) and when I realized what a thoughtful chef he was. I'm so glad he waited around for us!</p>
@@ -641,31 +637,21 @@ Shelby</p>
 <p>One of my favorite things about brown-and-stirreds at Lost Lake especially is that they’re a little enigmatic, not unlike our bar itself. People who come in for the first time have said that they walk by us all the time and had no idea what what was going on inside. When a guest sees another get a cocktail with only a big rock (shout out to Just Ice for keeping our cubes clear and cute!) as its ornamentation, I think they’re similarly confused.</p>
 <p>What isn’t obvious to the eye is that a lot of our stirred cocktails absolutely maintain a tropical flavor profile without the use of juice or syrups. Rum/rhum, with its very few rules for production, offers a great range of flavors that can veer fruity or spice-forward and can have those qualities gracefully amplified with other spirits. For example, our Plantation Pineapple Kingston Negroni does just that. While the base spirit is clearly pineapple forward, the Campari contributes a beautiful bright and bitter orange flavor with the vermouth running interference with its delicate richness and dried stone fruit notes.</p>
 <p>Let’s stir up some drinks to keep from getting to stir-crazy, shall we?</p>
-<p><strong>Three of Strong</strong><br/>
-<em>This cocktail was one of my first favorites when I first started having shifties at Lost Lake. The bourbon and aged agricole give this drink a decidedly oak-forward backbone but each of their nuances shine: the American oak that holds aging bourbon gives it a little vanilla and coconut; and, the French oak which houses the agricole lends its self to a more tannic, tea-like hint. The sherries bring a bit of richness and raisin, making this a fruit forward but meticulously balanced bevvy.</em><br/>
-1oz Evan Williams Bourbon<br/>
-1 oz Clement Select Barrel<br/>
-.5 oz Pedro Ximenez Sherry<br/>
-.5 oz Palo Cortado Sherry<br/>
-Combine spirits in mixing glass, stir with ice for around five to seven seconds (depending on your ice), strain into a tumbler with fresh ice. Express orange peel over the tumbler and discard.</p>
-<p><strong>Art of Choke</strong><br/>
-<em>An original of our neighbors down Milwaukee Avenue (hi, Violet Hour!), this pleasantly medicinal drink has some of my favorite components: Cynar, Green Chartreuse, and of course, rum! The combination of Cynar and Green Chartreuse gives off a lovely, darkly floral element with a savory undertone. The multi-island rum we use for it at Lost Lake, Banks 5, suits this cocktail perfectly. Its balance of five very different regions of rum making lends a funk that stands quite nicely with the drink’s other herbaceous ingredients.</em><br/>
-1 oz Cynar<br/>
-1 oz Banks 5 Rum<br/>
-.25 oz Green Chartreuse<br/>
-bar spoon lime juice<br/>
-bar spoon demerara syrup<br/>
-4 mint leaves (I’ve used a couple of dashes of mint extract before instead)<br/>
-Combine all ingredients (including mint leaves) into a mixing glass and stir. Strain over fresh ice.</p>
-<p><strong>Old-Fashioned</strong><br/>
-<em>I love getting dealer’s choices for a rum old-fashioned! It’s like being given a list of enabling constraints. This one right here is one I like to make for myself but I feel like an old-fashioned should be a little bit of choose-your-own-adventure.</em><br/>
-1 oz Smith and Cross<br/>
-.5 oz Plantation Original Dark<br/>
-.5 oz Cynar<br/>
-2 dashes orange bitters<br/>
-1 d Angostura bitters<br/>
-Combine all in a mixing glass, mix with ice and strain over fresh ice. Express orange and discard peel.<br/>
-Stir and sip safely and soundly, friends!</p>
+<div class="recipe" id="recipe-2020-04-02-vol-05-three-of-strong"><h3 class="recipe-title">Three of Strong</h3><p class="recipe-desc">This cocktail was one of my first favorites when I first started having shifties at Lost Lake. The bourbon and aged agricole give this drink a decidedly oak-forward backbone but each of their nuances shine: the American oak that holds aging bourbon gives it a little vanilla and coconut; and, the French oak which houses the agricole lends its self to a more tannic, tea-like hint. The sherries bring a bit of richness and raisin, making this a fruit forward but meticulously balanced bevvy.</p><ul class="ingredients"><li>1oz Evan Williams Bourbon</li>
+<li>1 oz Clement Select Barrel</li>
+<li>.5 oz Pedro Ximenez Sherry</li>
+<li>.5 oz Palo Cortado Sherry</li></ul><div class="method"><p>Combine spirits in mixing glass, stir with ice for around five to seven seconds (depending on your ice), strain into a tumbler with fresh ice. Express orange peel over the tumbler and discard.</p></div></div>
+<div class="recipe" id="recipe-2020-04-02-vol-05-art-of-choke"><h3 class="recipe-title">Art of Choke</h3><p class="recipe-desc">An original of our neighbors down Milwaukee Avenue (hi, Violet Hour!), this pleasantly medicinal drink has some of my favorite components: Cynar, Green Chartreuse, and of course, rum! The combination of Cynar and Green Chartreuse gives off a lovely, darkly floral element with a savory undertone. The multi-island rum we use for it at Lost Lake, Banks 5, suits this cocktail perfectly. Its balance of five very different regions of rum making lends a funk that stands quite nicely with the drink’s other herbaceous ingredients.</p><ul class="ingredients"><li>1 oz Cynar</li>
+<li>1 oz Banks 5 Rum</li>
+<li>.25 oz Green Chartreuse</li>
+<li>bar spoon lime juice</li>
+<li>bar spoon demerara syrup</li>
+<li>4 mint leaves (I’ve used a couple of dashes of mint extract before instead)</li></ul><div class="method"><p>Combine all ingredients (including mint leaves) into a mixing glass and stir. Strain over fresh ice.</p></div></div>
+<div class="recipe" id="recipe-2020-04-02-vol-05-old-fashioned"><h3 class="recipe-title">Old-Fashioned</h3><p class="recipe-desc">I love getting dealer’s choices for a rum old-fashioned! It’s like being given a list of enabling constraints. This one right here is one I like to make for myself but I feel like an old-fashioned should be a little bit of choose-your-own-adventure.</p><ul class="ingredients"><li>1 oz Smith and Cross</li>
+<li>.5 oz Plantation Original Dark</li>
+<li>.5 oz Cynar</li>
+<li>2 dashes orange bitters</li>
+<li>1 d Angostura bitters</li></ul><div class="method"><p>Combine all in a mixing glass, mix with ice and strain over fresh ice. Express orange and discard peel.<br/>Stir and sip safely and soundly, friends!</p></div></div>
 <h2>MIA DANCES LIKE ONLY MIA'S WATCHING</h2>
 <p><img alt="" src="images/vol-05-03.png"/></p>
 <p><em>Click that bright pink "move it or lose it" button to hear Mia's mix!</em></p>
@@ -929,17 +915,16 @@ Shelby</p>
 <p><strong>History lesson</strong>: The Republic of Venice and the Republic of Genoa had a series of wars over the dominance of the Mediterranean Sea between 1256-1381 which ended up being inconclusive. These wars were directly correlated to the Silk Road trade routes which Marco Polo's merchant father was a part of. There were four significant wars total with decades of peace in between each war. In 1295, Marco Polo had returned to his home in Venice and right into the second Venetian-Genoese war — the War of Curzola, 1295-1299 — which did not have much significance, but had the most casualties. Needless to say, Venice lost to Genoa, hence Marco Polo's imprisonment.</p>
 <p><img alt="" src="images/vol-08b-03.png"/></p>
 <p>As Songkran comes to an end, and as I pay reverence to my ancestors and those who share my culture, I have written a recipe that is based on the first documented version of Laap (minus the blood part.) It is a thoroughly indigenous dish — hyper-regional, seasonal, and a huge staple in many Southeast Asian cuisines. There are so many different renditions and variations of this recipe, and because these are quarantine times, I used what I had in my pantry to put this together.</p>
-<p><strong>Laap (2-4 servings)</strong><br/>
-1 lbs lean ground beef (lean chicken, pork, or lamb works well too)<br/>
-1/2 cup beef or chicken broth (water works too)<br/>
-3 cloves garlic, minced<br/>
-1 Tbs fish sauce<br/>
-1 tsp chili flakes<br/>
-1/2 tsp ground cumin(use more cumin if using lamb)<br/>
-1/2 tsp ground coriander<br/>
-1/2 tsp ground white pepper<br/>
-1/2 tsp ground black pepper<br/>
-1/2 tsp salt</p>
+<div class="recipe" id="recipe-2020-04-16-vol-08b-laap-2-4-servings"><h3 class="recipe-title">Laap (2-4 servings)</h3><ul class="ingredients"><li>1 lbs lean ground beef (lean chicken, pork, or lamb works well too)</li>
+<li>1/2 cup beef or chicken broth (water works too)</li>
+<li>3 cloves garlic, minced</li>
+<li>1 Tbs fish sauce</li>
+<li>1 tsp chili flakes</li>
+<li>1/2 tsp ground cumin(use more cumin if using lamb)</li>
+<li>1/2 tsp ground coriander</li>
+<li>1/2 tsp ground white pepper</li>
+<li>1/2 tsp ground black pepper</li>
+<li>1/2 tsp salt</li></ul></div>
 <p>For the dressing<br/>
 zest from one lime<br/>
 1/4 cup lime juice<br/>
@@ -1028,11 +1013,9 @@ Shelby</p>
 <p><img alt="" src="images/vol-10-02.jpg"/></p>
 <p>Queen’s Park Swizzle! 1. You get to show off that lele* skill; 2. Mint is still an underrated garnish/ingredient; 3. Delicious cocktail with an 'Ango Halo'.</p>
 <p>*Bois Lele: those wooden swizzle sticks we use at Lost Lake. You can order one <a href="https://www.cocktailkingdom.com/swizzle-stick">here</a>!</p>
-<p><strong>Queen's Park Swizzle</strong><br/>
-1.5 oz El Dorado 5 Year Rum<br/>
-.75 oz lime<br/>
-.75 oz simple syrup<br/>
-*Lightly press six mint leaves and drop into glass. Add all ingredients, then a cup of crushed ice. Using your , swizzle that drink!</p>
+<div class="recipe" id="recipe-2020-04-21-vol-10-queen-s-park-swizzle"><h3 class="recipe-title">Queen's Park Swizzle</h3><ul class="ingredients"><li>1.5 oz El Dorado 5 Year Rum</li>
+<li>.75 oz lime</li>
+<li>.75 oz simple syrup</li></ul><div class="method"><p>*Lightly press six mint leaves and drop into glass. Add all ingredients, then a cup of crushed ice. Using your , swizzle that drink!</p></div></div>
 <p>How to Swizzle: Jiggle your swizzling tool (bois lele, bar spoon, milk frother, kabob stick, etc) down into the ice where all the liquid ingredients are. Hold the swizzle stick between your palms and quickly rotate the stick by rubbing your palms together. As you rotate, move the stick up and down, so the ingredients and ice become incorporated, and a nice layer of frost begins to form on the outside of the glass. This chills, aerates, and properly dilutes the drink. Remove the swizzle, top with more crushed ice and pack it down with your cupped palm.</p>
 <p>To garnish with an Ango Halo: Dash Angostura Bitters on the top of the packed crushed ice so that just the top half inch of ice is red.</p>
 <p>Finish with a big bouquet of spanked mint. Place your straw right in the middle of that mint and take a big sniff with every sip!*</p>
@@ -1045,10 +1028,7 @@ Shelby</p>
 <h2>ANDY</h2>
 <p><img alt="" src="images/vol-10-04.jpg"/></p>
 <p>Topo-Ti Punch! I love it because it truly makes me feel like I’m drinking. There aren’t too many spiritfree cocktails that you can sip and enjoy over a nice big rock.</p>
-<div class="recipe" id="recipe-2020-04-21-vol-10-topo-ti-punch"><h3 class="recipe-title">Topo-Ti Punch</h3><ul class="ingredients"><li>3 oz Topo Chico (chilled)</li>
-<li>barspoon Dubois Petite Cane Syrup (or a rich simple syrup, 2:1 sugar:water)</li>
-<li>lime coin</li>
-<li>Vince’s Pro Tip: a pinch of salt</li></ul><div class="method"><p>Cut a quarter-size disk of lime, making sure to include a small amount of flesh. Squeeze the lime disk over an old-fashioned glass and drop it into the glass. Add the cane syrup and, using a barspoon, press against the lime to release its oils and integrate them with the syrup. Add a large ice cube, pinch of salt (if using), and pour in the Topo Chico. Give it a quick stir to dilute and cool down.</p></div></div>
+<div class="recipe" id="recipe-2020-04-21-vol-10-topo-ti-punch"><h3 class="recipe-title">Topo-Ti Punch</h3><ul class="ingredients"><li>3 oz Topo Chico (chilled)</li></ul><div class="method"><p>barspoon Dubois Petite Cane Syrup (or a rich simple syrup, 2:1 sugar:water)<br/>lime coin<br/>Vince’s Pro Tip: a pinch of salt<br/>Cut a quarter-size disk of lime, making sure to include a small amount of flesh. Squeeze the lime disk over an old-fashioned glass and drop it into the glass. Add the cane syrup and, using a barspoon, press against the lime to release its oils and integrate them with the syrup. Add a large ice cube, pinch of salt (if using), and pour in the Topo Chico. Give it a quick stir to dilute and cool down.</p></div></div>
 <h2>DESIRA</h2>
 <p><img alt="" src="images/vol-10-05.jpg"/></p>
 <p>Fino-Agricole Daiquiri! I found that bartenders that don’t usually like cocktails are partial to a fino/rhum daiquiri — Desira’s no exception!</p>
@@ -1060,8 +1040,7 @@ Shelby</p>
 <p><img alt="" src="images/vol-10-06.jpg"/></p>
 <p>Negroni Sbagliato! It’s the perfect balance of bitter and bright — with some bubbles to boot! I like it best with Cocchi di Torino sweet vermouth, or a total divergence from the classic with Alessio Bianco.</p>
 <div class="recipe" id="recipe-2020-04-21-vol-10-negroni-sbagliato"><h3 class="recipe-title">Negroni Sbagliato</h3><ul class="ingredients"><li>1.5 oz Cocchi di Torino Sweet Vermouth</li>
-<li>.5 oz Campari</li>
-<li>sparkling wine</li></ul><div class="method"><p>Build this cocktail in a wine glass! Add vermouth and Campari, fill glass 3/4 with ice. Top with sparkling wine and give a little stir. Garnish with a looooooong orange peel (my grandma calls them horse's necks!) expressed, and then rolled into a rosette and nestled in the ice.</p></div></div>
+<li>.5 oz Campari</li></ul><div class="method"><p>sparkling wine<br/>Build this cocktail in a wine glass! Add vermouth and Campari, fill glass 3/4 with ice. Top with sparkling wine and give a little stir. Garnish with a looooooong orange peel (my grandma calls them horse's necks!) expressed, and then rolled into a rosette and nestled in the ice.</p></div></div>
 <h2>LOUISE</h2>
 <p><img alt="" src="images/vol-10-07.png"/></p>
 <p>Martini! I’ve been drinking a lot of martinis in quarantine. Much like Alicia and her Manhattan, the martini was the first cocktail I had that made me realize cocktails are important. The martini is also where my love for vermouth began. When making a martini I keep it clean and simple and make sure that my vermouth is quality and fresh. Always always refrigerate vermouth after opening it!</p>
@@ -1071,8 +1050,7 @@ Shelby</p>
 <p><img alt="" src="images/vol-10-08.jpg"/></p>
 <p>Toronto! It's a recent favorite of mine that we’ve had on our #Shiftease menus recently. A brown-and-stirred, the combination of rye or Canadian whiskey with Fernet and a little sugar is lovely and herbaceous.</p>
 <div class="recipe" id="recipe-2020-04-21-vol-10-toronto"><h3 class="recipe-title">Toronto</h3><ul class="ingredients"><li>2.5 oz Rye Whiskey or Canadian Whiskey</li>
-<li>.25 oz demerara syrup</li>
-<li>Barspoon Fernet Branca</li></ul><div class="method"><p>Combine all ingredients in a mixing glass, add cubed ice and stir for 10 seconds. Keep the back of your spoon against the wall of the glass and try to just "spin" the drink — your aim is to chill and dilute, not agitate or aerate. Strain into a chilled cocktail coupe.</p></div></div>
+<li>.25 oz demerara syrup</li></ul><div class="method"><p>Barspoon Fernet Branca<br/>Combine all ingredients in a mixing glass, add cubed ice and stir for 10 seconds. Keep the back of your spoon against the wall of the glass and try to just "spin" the drink — your aim is to chill and dilute, not agitate or aerate. Strain into a chilled cocktail coupe.</p></div></div>
 <h2>VINCE</h2>
 <p><img alt="" src="images/vol-10-09.jpg"/></p>
 <p>Remember the Alimony! I love Cynar and this is a great negroni riff.</p>
@@ -1095,13 +1073,11 @@ Shelby</p>
 <p><img alt="" src="images/vol-11-01.jpg"/></p>
 <p>The Lost Lake version of the Banana Boulevardier (named 'Who Invented the Banana Boulevardier?') is inspired by both Terry Williams's version served at one of my favorite bars, <a href="https://www.instagram.com/anvilhouston/">Anvil Bar and Refuge</a> in Houston (shout out to my hometown!), and Austin Hennelly's version served at <a href="https://www.instagram.com/majordomola/">Majordomo</a> in Los Angeles. Terry started off by combining Campari and Giffard Banane de Brazil as a <a href="https://punchdrink.com/articles/everyone-invented-bananavardier-banana-boulevardier-cocktail-recipe/">house shot</a> that quickly turned into a delicious Boulevardier riff using bourbon, sweet vermouth, Campari, and the banana liqueur. Austin, taking what he learned at Booker and Dax in NYC, decided to infuse Japanese whiskey with cooked bananas and clarified the mixture using a centrifuge.</p>
 <p>I decided to borrow a bit from both techniques in this version — it's a bit easier to prepare and is still so delicious. Of course, I had to add a bit of funky Jamaican rum to the mix, which further enhances the banana flavor and adds a bit of complexity.</p>
-<p><strong>Who Invented the Banana Boulevardier?</strong><br/>
-<em>(makes 3-4 servings)</em><br/>
-4 oz Four Roses Single Barrel Bourbon<br/>
-2 oz Velier Hampden 46 Jamaican Rum<br/>
-3 oz Cocchi di Torino Sweet Vermouth<br/>
-1.5 oz Tempus Fugit Creme de Banana<br/>
-1 oz Campari</p>
+<div class="recipe" id="recipe-2020-04-23-vol-11-who-invented-the-banana-boulevardier"><h3 class="recipe-title">Who Invented the Banana Boulevardier?</h3><p class="recipe-desc">(makes 3-4 servings)</p><ul class="ingredients"><li>4 oz Four Roses Single Barrel Bourbon</li>
+<li>2 oz Velier Hampden 46 Jamaican Rum</li>
+<li>3 oz Cocchi di Torino Sweet Vermouth</li>
+<li>1.5 oz Tempus Fugit Creme de Banana</li>
+<li>1 oz Campari</li></ul></div>
 <p>To infuse (using a sous vide wand, ya fancy home chefs):</p>
 <ul>
 <li>Using a sealable bag and a vacuum bag sealer, seal the bottom of the bag (really make sure that bottom is sealed!)</li>
@@ -1146,23 +1122,16 @@ Soak the almonds in water for 24 hours, using just enough water to cover the nut
 <p>Don't Touch My Bikini is a really wonderful and deceptively simple cocktail — but the whole thing hinges on the spirit: malty, earthy, Dutch 'gin' called genever. (If you're curious, you can find more than you probably ever wanted to know about the spirit <a href="https://www.diffordsguide.com/beer-wine-spirits/category/413/genever/jenever">here</a>.)</p>
 <p>The name comes from the <a href="https://open.spotify.com/track/1fcZq96QZkAkEHcC1FlH9l?si=4iG1zraAQg2fe5t58sBSFw">Halo Bender's song</a> of the same name — and if you listen closely you'll probably hear other cocktail names on that album. What can I say, I love to borrow Halo Benders lyrics ¯_(ツ)_/¯</p>
 <p>But the best thing about this cocktail is that she has a spiritfree sibling, developed by Lost Lake's former 'mocktologist' (and MY sibling) <a href="https://www.instagram.com/p/BRl3NmgFs1U/">John Allison</a>! Remember him? He's the best. John's a UPS driver now — send him some virus-repelling vibes while you enjoy his no tipple sipper!</p>
-<p><strong>Don't Touch My Bikini</strong><br/>
-1.5 oz genever gin<br/>
-.75 oz fresh lime juice<br/>
-.75 oz coconut cream<br/>
-0.5 oz cane syrup or rich simple syrup<br/>
-five drops Bittermens Hellfire Shrub<br/>
-Angostura Bitters halo<br/>
-mint bouquet<br/>
-*Add all ingredients (except Angostura Bitters and mint) right into your drinking vessel along with one cup of crushed ice. Using your swizzle tool, swizzle that drink!</p>
+<div class="recipe" id="recipe-2020-04-23-vol-11-don-t-touch-my-bikini"><h3 class="recipe-title">Don't Touch My Bikini</h3><ul class="ingredients"><li>1.5 oz genever gin</li>
+<li>.75 oz fresh lime juice</li>
+<li>.75 oz coconut cream</li>
+<li>0.5 oz cane syrup or rich simple syrup</li></ul><div class="method"><p>five drops Bittermens Hellfire Shrub<br/>Angostura Bitters halo<br/>mint bouquet<br/>*Add all ingredients (except Angostura Bitters and mint) right into your drinking vessel along with one cup of crushed ice. Using your swizzle tool, swizzle that drink!</p></div></div>
 <p>How to Swizzle: Jiggle your swizzling tool (bois lele, bar spoon, milk frother, kabob stick, etc) down into the ice where all the liquid ingredients are. Hold the swizzle stick between your palms and quickly rotate the stick by rubbing your palms together. As you rotate, move the stick up and down, so the ingredients and ice become incorporated, and a nice layer of frost begins to form on the outside of the glass. This chills, aerates, and properly dilutes the drink. Remove the swizzle, top with more crushed ice and pack it down with your cupped palm.</p>
 <p>To garnish with an Ango Halo: Dash Angostura Bitters on the top of the packed crushed ice so that just the top half inch of ice is red.</p>
 <p>Finish with a big bouquet of spanked mint. Place your straw right in the middle of that mint and take a big sniff with every sip!*</p>
 <div class="recipe" id="recipe-2020-04-23-vol-11-don-t-touch-my-car-keys"><h3 class="recipe-title">Don’t Touch My Car Keys</h3><ul class="ingredients"><li>1.5 oz coconut syrup</li>
 <li>0.75 oz lime</li>
-<li>3 oz Topo Chico (chilled)</li>
-<li>Halo of Fee Brothers Old Fashioned Aromatic Bitters</li>
-<li>mint bouquet</li></ul><div class="method"><p>Same preparation technique as Don't Touch My Bikini!</p></div></div>
+<li>3 oz Topo Chico (chilled)</li></ul><div class="method"><p>Halo of Fee Brothers Old Fashioned Aromatic Bitters<br/>mint bouquet<br/>Same preparation technique as Don't Touch My Bikini!</p></div></div>
 <h2>LOST LAKE PET PARADE</h2>
 <p><img alt="" src="images/vol-11-04.jpeg"/></p>
 <p><em>Meet Andy's dog Brella!</em></p>
@@ -1199,8 +1168,7 @@ Shelby</p>
 <li>.75 oz ginger syrup</li>
 <li>.5 oz heavy cream</li>
 <li>1 egg white</li>
-<li>1 dash angostura</li>
-<li>Ground cinnamon for garnish</li></ul><div class="method"><p>Pour soda into the base of a Collins or snifter glass. Combine all ingredients except cream and soda in a tin and add one ice cube. Now if you want a little extra help with fluffing up your egg white, remove the spring from a hawthorn strainer and drop that into the tin as well, the spring will act as a whisk while you shake and add that extra whip for the ultimate egg white foam. Tightly seal your tin and shake shake shake shake until the ice cube has disappeared and the mixture feels fluffy and aerated, like you’re shaking a large cotton ball. Then add cream and enough ice to fill the tin and shake hard (read: HARD!) for ten seconds. Double strain into your glass over the soda. Once the mixture reaches the rim of the glass, allow it to settle and release its major air bubbles. Once the cocktail has settled sloooowly pour the remainder of the tin directly into the center of your drink. I sometimes like to use a straw or bar spoon to poke a hole down to the base of my drink and then pour into that hole — this will make the head of the drink rise up like a beautiful cloud. Dust with cinnamon for garnish and enjoy!</p></div></div>
+<li>1 dash angostura</li></ul><div class="method"><p>Ground cinnamon for garnish<br/>Pour soda into the base of a Collins or snifter glass. Combine all ingredients except cream and soda in a tin and add one ice cube. Now if you want a little extra help with fluffing up your egg white, remove the spring from a hawthorn strainer and drop that into the tin as well, the spring will act as a whisk while you shake and add that extra whip for the ultimate egg white foam. Tightly seal your tin and shake shake shake shake until the ice cube has disappeared and the mixture feels fluffy and aerated, like you’re shaking a large cotton ball. Then add cream and enough ice to fill the tin and shake hard (read: HARD!) for ten seconds. Double strain into your glass over the soda. Once the mixture reaches the rim of the glass, allow it to settle and release its major air bubbles. Once the cocktail has settled sloooowly pour the remainder of the tin directly into the center of your drink. I sometimes like to use a straw or bar spoon to poke a hole down to the base of my drink and then pour into that hole — this will make the head of the drink rise up like a beautiful cloud. Dust with cinnamon for garnish and enjoy!</p></div></div>
 <h2>SHANNON ANSWERS THE REQUEST LINE: HEAVEN IS A PLACE/THIS IS THE PLACE</h2>
 <p><img alt="" src="images/vol-12a-02.jpg"/></p>
 <p>Much like the Belinda Carlisle song where this cocktail got part of its name, Heaven is a Place/This is the Place is a well-beloved jam. Whether enjoying it alone or at full volume in a ceramic conch shell with friends, this gin-based banger carries a bright, decidedly tropical tune over a lovely helping of crushed ice. Honey, allspice dram and falernum work together to bring an earthy, tropically spiced note, while the lime juice and curaçao provide the zest. Though I’m not much of a gin drinker myself (thank you, New Years 2011), I absolutely love the herbaceous backbone of it in this cocktail, as it gracefully amplifies the nuttiness of the allspice dram, the floralness of the honey and curaçao, and the tartness of the lime.</p>
@@ -1250,8 +1218,7 @@ Shelby</p>
 <div class="recipe" id="recipe-2020-04-30-vol-12b-lowtide-lifesaver"><h3 class="recipe-title">Lowtide Lifesaver</h3><ul class="ingredients"><li>2 oz Seedlip Spice</li>
 <li>.75 oz pomegranate grenadine</li>
 <li>.5 oz mint tea syrup</li>
-<li>1 oz lemon juice</li>
-<li>Fever Tree Ginger Beer</li></ul><div class="method"><p>Add all ingredients to a cocktail shaker except ginger beer. Shake with ice for five seconds, strain into a collins glass over fresh cubes of ice. Top with ginger beer.</p></div></div>
+<li>1 oz lemon juice</li></ul><div class="method"><p>Fever Tree Ginger Beer<br/>Add all ingredients to a cocktail shaker except ginger beer. Shake with ice for five seconds, strain into a collins glass over fresh cubes of ice. Top with ginger beer.</p></div></div>
 <p>Vince makes his mint tea syrup with Intelligentsia's Moroccan Mint Tea. He steeps 25g of tea in 2 cups of water for 10 minutes. Strain the tea leaves, then use the tea to make a 1:1 simple syrup with white sugar.</p>
 <p>You can make pomegranate grenadine using pure pomegranate juice (we use POM Wonderful at Lost Lake) and sugar in a 1:1 mixture.</p>
 <p>This cocktail is also great with an ounce of London Dry Gin, if you need a little tipple in your tropical cocktail!</p>
@@ -1264,8 +1231,7 @@ Shelby</p>
 <div class="recipe" id="recipe-2020-04-30-vol-12b-glassquiri-from-glass-paris-2015"><h3 class="recipe-title">Glassquiri (from Glass, Paris 2015)</h3><ul class="ingredients"><li>2 oz light rum (we use Plantation 3 Star or El Dorado 3 Year), but you can also use an unflavored vodka or blanco tequila!</li>
 <li>1 oz pineapple juice (Trader Joe’s makes the best store-bought version if you can’t juice your own)</li>
 <li>.75 oz fresh lime juice</li>
-<li>.75 oz simple syrup</li>
-<li>barspoon coconut oil (skinny teaspoon)</li></ul><div class="method"><p>Combine all ingredients in a cocktail shaker. Before you add ice, give it a little whisk or agitate it with a fork to emulsify the oil. Then add ice and shake that shit really, really, really hard — 'til it's too cold to hold! You need to put some work in to get that nice frothy head. Strain into a chilled cocktail coupe and garnish with a pineapple wedge.</p></div></div>
+<li>.75 oz simple syrup</li></ul><div class="method"><p>barspoon coconut oil (skinny teaspoon)<br/>Combine all ingredients in a cocktail shaker. Before you add ice, give it a little whisk or agitate it with a fork to emulsify the oil. Then add ice and shake that shit really, really, really hard — 'til it's too cold to hold! You need to put some work in to get that nice frothy head. Strain into a chilled cocktail coupe and garnish with a pineapple wedge.</p></div></div>
 <p class="back-to-top"><a href="#top">↑ back to contents</a></p>
 </article>
 
@@ -1301,15 +1267,14 @@ Shelby</p>
 <p>From Where to Where is one of Lost Lake's newest creations, and before we were all quarantined it was being featured on our menu. This cocktail is special because it brings together a variety of ingredients that are both unique and unusual. For those of you who have yet to try this concoction, let me give you a broad description: This cocktail is on the lighter and brighter side, but still a bit boozy, it’s going to have some floral notes along with coffee and a bit of baking spice on the finish. As the base, we are using Jamaican rum, mezcal, and tequila. We often blend tequila and mezcal in our cocktails but this one is a little unusual because calls for a healthy amount of Jamaican rum. This is only unusual because we haven’t really seen it before but hear us out!</p>
 <p>The spirit blend is tied together by the rest of the ingredients. Along with a bit of lime juice and a couple dashes of absinthe we introduce a new ingredient, hibiscus grenadine. The hibiscus is going to give the cocktail a dry floral aspect. We mix this with a bit of coffee demerara syrup to help balance the hibiscus and add our house falernum to finish it off. The recipe for the Lost Lake Falernum is top secret but I <em>can</em> tell you that flavor wise it’s going to add the baking spice aspect to the cocktail. If it was to be compared to Velvet Falernum, one might say its drier and more spice forward, specifically clove. Almost as if we infused rum with baking spices…</p>
 <p>Now this is a swizzled cocktail so, grab your favorite swizzle tool, a zombie glass, and some crushed Ice. Add all the ingredients into the glass plus 1 cup of crushed ice and begin to swizzle! Usually 10-15 seconds of swizzling is plenty. Top off with crushed ice and garnish with what you have available — mint and nutmeg is ideal but not necessary. Cheers!</p>
-<p><strong>From Where to Where</strong><br/>
-1 oz of Smith &amp; Cross Overproof Jamaican Rum<br/>
-.5 oz Corazon Blanco Tequila<br/>
-.5 oz Bahnez Mezcal<br/>
-.25 oz hibiscus grenadine<br/>
-.25 oz falernum (you can use Velvet Falernum!)<br/>
-.25 oz coffee demerara syrup<br/>
-.75 oz lime juice<br/>
-2 dashes of absinthe</p>
+<div class="recipe" id="recipe-2020-05-05-vol-14-from-where-to-where"><h3 class="recipe-title">From Where to Where</h3><ul class="ingredients"><li>1 oz of Smith &amp; Cross Overproof Jamaican Rum</li>
+<li>.5 oz Corazon Blanco Tequila</li>
+<li>.5 oz Bahnez Mezcal</li>
+<li>.25 oz hibiscus grenadine</li>
+<li>.25 oz falernum (you can use Velvet Falernum!)</li>
+<li>.25 oz coffee demerara syrup</li>
+<li>.75 oz lime juice</li>
+<li>2 dashes of absinthe</li></ul></div>
 <h2>PAUL MAKES GARDENIA MIX</h2>
 <p><img alt="" src="images/vol-14-03.png"/></p>
 <p>Don the Beachcomber’s cocktails are extremely influential to us at Lost Lake. These drinks were creative, thoughtful, and complex, and definitely not easy to recreate! As some of you already know, Don never published any written recipes and rarely even shared those recipes with the bartenders at his own establishments. Most of his bartenders only knew that a certain drink called for .5 oz of Don’s Mix #2 or Don’s Spices #4, not really knowing what was in these labeled bottles.</p>
@@ -1356,15 +1321,14 @@ Shelby</p>
 <p><img alt="" src="images/vol-15-02.jpeg"/></p>
 <p>Maybe it’s the Midwestern kid in me, knowing that it would be impossible for me to show up to a gathering of any size empty-handed. Or maybe it’s just that — like most people on the face of this earth — I love a little something sweet. Either way, after making these jam bars for the last 20 years for any holiday, backyard barbecue, or average Sunday dinner, it has become just shy of a <em>demand</em> that I bring a plate or two of them with me. As the weather begins to break and the feeling grows of how much I miss all of my friends and loved ones, and all the celebrations and gatherings we have had to put aside for our safely and well-being, I am drawn back to this recipe and the look on peoples faces the first time they take a bite of one.</p>
 <p>And perhaps for now while we all hunker down inside and wait for the day that we can gather once more, the best I can do is offer this once top secret recipe to you.</p>
-<p><strong>Chef Dani's Jam Bars</strong><br/>
-2 &amp; 1/2 Cups All Propose Flour<br/>
-1/2 Cup Sugar<br/>
-1/8 tsp Kosher Salt<br/>
-1 Cup (2 sticks) Unsalted Butter, Room Temp<br/>
-1 Egg Yolk<br/>
-1 Tbs Vanilla Extract<br/>
-2 Tbs Almond Extract<br/>
-1/2 Cup Seedless Raspberry Jam</p>
+<div class="recipe" id="recipe-2020-05-07-vol-15-chef-dani-s-jam-bars"><h3 class="recipe-title">Chef Dani's Jam Bars</h3><ul class="ingredients"><li>2 &amp; 1/2 Cups All Propose Flour</li>
+<li>1/2 Cup Sugar</li>
+<li>1/8 tsp Kosher Salt</li>
+<li>1 Cup (2 sticks) Unsalted Butter, Room Temp</li>
+<li>1 Egg Yolk</li>
+<li>1 Tbs Vanilla Extract</li>
+<li>2 Tbs Almond Extract</li>
+<li>1/2 Cup Seedless Raspberry Jam</li></ul></div>
 <p>Begin by preheating you over to 350 degrees. Next lightly oiling and lining an 8”x8” metal baking pan with parchment paper, making sure to leave two to three inches of overhang on the side.</p>
 <p>In a mixing bowl, combine the flour, sugar, and salt. With your hands add in the butter, by rubbing it into the dry ingredients until a coarse sandy texture is achieved.</p>
 <p>Add in the egg yolk, vanilla, and almond extract. Continue mixing with your hands until the mixture comes together and no streaks of egg yolk remain.</p>
@@ -1502,9 +1466,11 @@ Shelby</p>
 <p><img alt="" src="images/vol-16-05.png"/></p>
 <p>Set ALL your drinks on fire at home! Cocktails! Smoothies! Coffee! Soup! Your salad! Your sandwich!</p>
 <p>Martin Cate of <a href="https://www.instagram.com/smugglerscovesf/">Smuggler's Cove</a> clued us in on the real trick to setting cocktails aflame: THE CROUTON. Before, when lighting some 151 rum on fire, I was always bummed out by the dinky little blue flame. Wah wah. Where's the excitement in that?! Then came the crouton — and along with it, a big bright yellow ribbon of fire! SO MUCH BETTER!!!</p>
-<div class="recipe" id="recipe-2020-05-15-vol-16-cocktail-fire"><h3 class="recipe-title">Cocktail Fire!</h3><ul class="ingredients"><li>one spent lime hull</li>
-<li>one 1" x 1" chunk of toasted bread, plain</li>
-<li>an overproof rum with some good sugar content (we use Hamilton 151)</li></ul><div class="method"><p>After juicing your lime, take something pointy (we use an ice pick — you could use tweezers, a meat thermometer, etc etc etc) and carefully separate the flesh of the fruit from the rind. Go all the way around the circumference, poking and peeling out all the flesh. Now you have a little lime cup! Put the crouton in, and soak with rum. Light it! Be very careful, okay?? I usually tell people to take a photo for Instagram and then blow it out. Flaming cocktails are not compatible with bangs, paper garnishes, children, or drunk adults.</p></div></div>
+<p><strong>Cocktail Fire!</strong><br/>
+one spent lime hull<br/>
+one 1" x 1" chunk of toasted bread, plain<br/>
+an overproof rum with some good sugar content (we use Hamilton 151)<br/>
+<em>After juicing your lime, take something pointy (we use an ice pick — you could use tweezers, a meat thermometer, etc etc etc) and carefully separate the flesh of the fruit from the rind. Go all the way around the circumference, poking and peeling out all the flesh. Now you have a little lime cup! Put the crouton in, and soak with rum. Light it! Be very careful, okay?? I usually tell people to take a photo for Instagram and then blow it out. Flaming cocktails are not compatible with bangs, paper garnishes, children, or drunk adults.</em></p>
 <p>If you're feeling even more adventurous, you can go full <a href="https://www.instagram.com/p/B_JRaq7gE31/">Hale Pele</a> and sprinkle cinnamon over your flame for a wonderfully aromatic sparkly fireworks show. (We don't do that at Lost Lake on account of the fact that we actually almost burned all the way down a few years ago, and I still feel very nervous every time we do The Crouton.)</p>
 <p class="back-to-top"><a href="#top">↑ back to contents</a></p>
 </article>
@@ -1523,16 +1489,14 @@ Shelby</p>
 <p>A little history of the clarified milk punch can be found <a href="https://www.atlasobscura.com/foods/clarified-milk-punch">here</a>, but the TL;DR version is that clarifying a punch is great for two things: a) preserving it for a long period of time and b) looking cool. Making it is not <em>too</em> laborious, but you will have to “pack your patience” as it can take hours to strain — a process that is worth the trouble to me.</p>
 <p>First thing I did was determine which drink would be a good candidate. The Corn N Oil cocktail hailing from Barbados is such a favorite of ours at Lost Lake, but our version differs from the traditional recipe quite a bit — we add more lime juice, shake it and serve it over a big rock. Our version is a delicious drink but I wanted to create something more like the original (even if I do choose a custom blend of rums). I’ve never made a clarified milk punch before so I searched YouTube for some helpful tips on making clarified milk punches like a pro. Most videos weren’t very helpful and didn’t factor in how much milk to add, they were just “make your punch and pour it over some milk, strain and voila, a super clarified milk punch!” It took lots of time and trial and error to not only get the proper balance, texture and dilution of the punch just right. Most milk punches I’ve had at bars and restaurants tended to be a little sweet for my taste and I wanted to know why. It seems the fats from the milk add a bit of roundness (sweetness) to the punch, so I like to bump up the citrus a bit. Also, the amount of milk — or half and half in this case — really matters. Sure, you are straining through the layer of milk fats, but the liquid from the milk will also dilute your punch and there is nothing worse than over diluted punch.</p>
 <p>Ok, ok, let’s get to it.</p>
-<p><strong>CLARIFIED CORN N OIL</strong><br/>
-In an 8 quart container, add:<br/>
-375ml (½ bottle) Clement Select Barrel Rhum Agricole<br/>
-375 ml (½ bottle) Real McCoy 5 Year Barbados Rum<br/>
-375 ml (½ bottle) Velvet Falernum<br/>
-100 ml lime juice<br/>
-50 ml Cruzan Blackstrap Rum<br/>
-50 ml water<br/>
-4 dashes Angostura Bitters<br/>
-Mix ingredients together.</p>
+<div class="recipe" id="recipe-2020-05-22-vol-17-clarified-corn-n-oil"><h3 class="recipe-title">CLARIFIED CORN N OIL</h3><ul class="ingredients"><li>In an 8 quart container, add:</li>
+<li>375ml (½ bottle) Clement Select Barrel Rhum Agricole</li>
+<li>375 ml (½ bottle) Real McCoy 5 Year Barbados Rum</li>
+<li>375 ml (½ bottle) Velvet Falernum</li>
+<li>100 ml lime juice</li>
+<li>50 ml Cruzan Blackstrap Rum</li>
+<li>50 ml water</li>
+<li>4 dashes Angostura Bitters</li></ul><div class="method"><p>Mix ingredients together.</p></div></div>
 <p>In a separate 8 quart container, add:<br/>
 4 oz Half and Half</p>
 <p>Pour the entire cocktail mixture over the Half and Half and let sit for 30 minutes. You should see the punch curdle — this is a good thing.</p>
@@ -1553,8 +1517,7 @@ Mix ingredients together.</p>
 <li>2.25 oz Plantation O.F.T.D.</li>
 <li>2.25 oz Maison Ferrand 1840 Cognac</li></ul><div class="method"><p>Mix everything with an electric mixer, starting with the eggs and sugar, then slowly adding the rest of the ingredients. Bottle up and refrigerate next to your Twinkies because this guy lastsforever<em>.</em></p></div></div>
 <p>Okay, for the spiced demerara syrup, our recipe is LARGE (cuz we make soooo much Nog). Take a look at it, and then just go for a smaller version of your own! All you need is demerara sugar and a bunch of baking spices — and time to let it steep. No matter what, you're going to end up with a delish, spicy-sweet sugar syrup.</p>
-<div class="recipe" id="recipe-2020-05-22-vol-17-lost-lake-spiced-demerara-syrup"><h3 class="recipe-title">Lost Lake Spiced Demerara Syrup</h3><ul class="ingredients"><li><em>To a large pot add:</em></li>
-<li>1 teaspoon fresh ground nutmeg</li>
+<div class="recipe" id="recipe-2020-05-22-vol-17-lost-lake-spiced-demerara-syrup"><h3 class="recipe-title">Lost Lake Spiced Demerara Syrup</h3><p class="recipe-desc">To a large pot add:</p><ul class="ingredients"><li>1 teaspoon fresh ground nutmeg</li>
 <li>2 teaspoons whole cloves</li>
 <li>2 teaspoons allspice berries</li>
 <li><em>Crush allspice berries and cloves with a muddler at bottom of pot</em></li>
@@ -1576,13 +1539,9 @@ Mix ingredients together.</p>
 <li><strong>.</strong>5 lime juice <strong>(a medley of backyard citrus!)</strong></li>
 <li>2 lime wedges <strong>(a medley of backyard citrus!)</strong></li>
 <li>6 mint leaves</li></ul><div class="method"><p>Roll mint leaves between your palms, drop into bottom of a collins glass. Scoop both sugars in, followed by citrus juice and wedges and then bubbly water. Muddle, with the wedges protecting the mint leaves. Add spirits, then stir with bar spoon to incorporate. Top with ice, stir again, top with more ice. Garnish with spanked mint bouquet! THE MOJITO GOLDEN RULE: Try not to drink your mojito in less time than it took the bartender (you) to make it. It's hard, I know.</p></div></div>
-<p><strong>Morgan's 50/50 Backyard Herb Martini</strong><br/>
-1.5 oz Gin (33 Portland Dry Gin)<br/>
-.75 oz Lillet Blanc<br/>
-.75 oz Dolin Dry Vermouth<br/>
-One drop herb-infused olive oil<br/>
-Lemon swath<br/>
-*Make herb-infused olive oil: Stir 1/4 cup olive oil with savory backyard herbs (rosemary, dill, thyme, etc) over medium heat for a few minutes, turn down heat and let steep until very fragrant. Strain out herbs and let oil cool.</p>
+<div class="recipe" id="recipe-2020-05-22-vol-17-morgan-s-50-50-backyard-herb-martini"><h3 class="recipe-title">Morgan's 50/50 Backyard Herb Martini</h3><ul class="ingredients"><li>1.5 oz Gin (33 Portland Dry Gin)</li>
+<li>.75 oz Lillet Blanc</li>
+<li>.75 oz Dolin Dry Vermouth</li></ul><div class="method"><p>One drop herb-infused olive oil<br/>Lemon swath<br/>*Make herb-infused olive oil: Stir 1/4 cup olive oil with savory backyard herbs (rosemary, dill, thyme, etc) over medium heat for a few minutes, turn down heat and let steep until very fragrant. Strain out herbs and let oil cool.</p></div></div>
 <p>In a mixing glass (a pint glass will do), add gin, Lillet, and vermouth with ice. Stir for ten seconds. Strain into a chilled cocktail coupe, and express a lemon rind overtop then discard. Add one teeny, tiny drop of your herb-infused olive oil to the top.*</p>
 <div class="recipe" id="recipe-2020-05-22-vol-17-morgan-s-oaxacan-old-fashioned"><h3 class="recipe-title">Morgan's Oaxacan Old Fashioned</h3><ul class="ingredients"><li>2 oz reposado tequila</li>
 <li>.5 oz mezcal</li>
@@ -1601,19 +1560,26 @@ Lemon swath<br/>
 <ol>
 <li><a href="#recipe-2020-03-26-vol-03-a-lonely-island-lost-in-the-middle-of-a-foggy-sea">A Lonely Island Lost in the Middle of A Foggy Sea</a><span class="issue-ref">Lost Lake Community Thread: Volume 3</span></li>
 <li><a href="#recipe-2020-03-24-vol-02-a-walk-to-the-lake">A Walk to the Lake</a><span class="issue-ref">Lost Lake Community Thread: Volume 2</span></li>
+<li><a href="#recipe-2020-04-02-vol-05-art-of-choke">Art of Choke</a><span class="issue-ref">Lost Lake Community Thread: Volume 5</span></li>
 <li><a href="#recipe-2020-03-24-vol-02-avocado-daiquiri">Avocado Daiquiri</a><span class="issue-ref">Lost Lake Community Thread: Volume 2</span></li>
 <li><a href="#recipe-2020-04-14-vol-08a-bahama-mama">Bahama Mama</a><span class="issue-ref">Lost Lake Community Thread: Volume 8</span></li>
-<li><a href="#recipe-2020-05-15-vol-16-cocktail-fire">Cocktail Fire!</a><span class="issue-ref">Lost Lake Community Thread: Volume 16</span></li>
+<li><a href="#recipe-2020-05-07-vol-15-chef-dani-s-jam-bars">Chef Dani's Jam Bars</a><span class="issue-ref">Lost Lake Community Thread: Volume 15</span></li>
+<li><a href="#recipe-2020-05-22-vol-17-clarified-corn-n-oil">CLARIFIED CORN N OIL</a><span class="issue-ref">Lost Lake Community Thread: Volume 17</span></li>
 <li><a href="#recipe-2020-04-09-vol-07-coco-frappe">Coco Frappe</a><span class="issue-ref">Lost Lake Community Thread: Volume 7</span></li>
 <li><a href="#recipe-2020-05-05-vol-14-cocoanut-grove-cooler">COCOANUT GROVE COOLER</a><span class="issue-ref">Lost Lake Community Thread: Volume 14</span></li>
 <li><a href="#recipe-2020-04-14-vol-08a-coconaut">Coconaut</a><span class="issue-ref">Lost Lake Community Thread: Volume 8</span></li>
+<li><a href="#recipe-2020-03-20-vol-01-welcome-coconut-cream">Coconut Cream</a><span class="issue-ref">Welcome to the Lost Lake Community Thread!</span></li>
 <li><a href="#recipe-2020-04-21-vol-10-daiquiri">Daiquiri</a><span class="issue-ref">Lost Lake Community Thread: Volume 10</span></li>
 <li><a href="#recipe-2020-04-09-vol-07-dancin-and-prancin">Dancin' and Prancin'</a><span class="issue-ref">Lost Lake Community Thread: Volume 7</span></li>
 <li><a href="#recipe-2020-03-26-vol-03-do-what-you-gotta-do">Do What You Gotta Do</a><span class="issue-ref">Lost Lake Community Thread: Volume 3</span></li>
+<li><a href="#recipe-2020-04-23-vol-11-don-t-touch-my-bikini">Don't Touch My Bikini</a><span class="issue-ref">Lost Lake Community Thread: Volume 11</span></li>
 <li><a href="#recipe-2020-05-07-vol-15-donga-punch-1937">Donga Punch (1937)</a><span class="issue-ref">Lost Lake Community Thread: Volume 15</span></li>
 <li><a href="#recipe-2020-04-23-vol-11-don-t-touch-my-car-keys">Don’t Touch My Car Keys</a><span class="issue-ref">Lost Lake Community Thread: Volume 11</span></li>
+<li><a href="#recipe-2020-03-20-vol-01-welcome-dusty-flamingo-and-the-hillbilly-lobo">Dusty Flamingo and the Hillbilly Lobo</a><span class="issue-ref">Welcome to the Lost Lake Community Thread!</span></li>
+<li><a href="#recipe-2020-03-20-vol-01-welcome-eric-s-end-of-the-world-garlic-ginger-congee">Eric's End of the World Garlic Ginger Congee</a><span class="issue-ref">Welcome to the Lost Lake Community Thread!</span></li>
 <li><a href="#recipe-2020-04-21-vol-10-fino-agricole-daiquiri">Fino-Agricole Daiquiri</a><span class="issue-ref">Lost Lake Community Thread: Volume 10</span></li>
 <li><a href="#recipe-2020-03-26-vol-03-from-pine-to-palm-like-ceremonies-of-a-pleasant-nature">From Pine to Palm / Like Ceremonies of a Pleasant Nature</a><span class="issue-ref">Lost Lake Community Thread: Volume 3</span></li>
+<li><a href="#recipe-2020-05-05-vol-14-from-where-to-where">From Where to Where</a><span class="issue-ref">Lost Lake Community Thread: Volume 14</span></li>
 <li><a href="#recipe-2020-04-21-vol-10-gimlet">Gimlet</a><span class="issue-ref">Lost Lake Community Thread: Volume 10</span></li>
 <li><a href="#recipe-2020-04-30-vol-12b-glassquiri-from-glass-paris-2015">Glassquiri (from Glass, Paris 2015)</a><span class="issue-ref">Lost Lake Community Thread: Volume 12</span></li>
 <li><a href="#recipe-2020-04-23-vol-11-hazy-lazy-like-kinda-crazy">Hazy Lazy, Like, Kinda Crazy</a><span class="issue-ref">Lost Lake Community Thread: Volume 11</span></li>
@@ -1621,6 +1587,7 @@ Lemon swath<br/>
 <li><a href="#recipe-2020-05-15-vol-16-jet-pilot">Jet Pilot</a><span class="issue-ref">Lost Lake Community Thread: Volume 16</span></li>
 <li><a href="#recipe-2020-04-09-vol-07-jusho">Jusho</a><span class="issue-ref">Lost Lake Community Thread: Volume 7</span></li>
 <li><a href="#recipe-2020-04-16-vol-08b-kingston-negroni">Kingston Negroni</a><span class="issue-ref">Lost Lake Community Thread: Volume 8</span></li>
+<li><a href="#recipe-2020-04-16-vol-08b-laap-2-4-servings">Laap (2-4 servings)</a><span class="issue-ref">Lost Lake Community Thread: Volume 8</span></li>
 <li><a href="#recipe-2020-04-07-vol-06-like-the-sun-in-solution">LIKE THE SUN IN SOLUTION</a><span class="issue-ref">Lost Lake Community Thread: Volume 6</span></li>
 <li><a href="#recipe-2020-05-22-vol-17-lil-saint-nog">LIL SAINT NOG</a><span class="issue-ref">Lost Lake Community Thread: Volume 17</span></li>
 <li><a href="#recipe-2020-05-22-vol-17-lost-lake-spiced-demerara-syrup">Lost Lake Spiced Demerara Syrup</a><span class="issue-ref">Lost Lake Community Thread: Volume 17</span></li>
@@ -1629,6 +1596,7 @@ Lemon swath<br/>
 <li><a href="#recipe-2020-04-30-vol-12b-lowtide-lifesaver">Lowtide Lifesaver</a><span class="issue-ref">Lost Lake Community Thread: Volume 12</span></li>
 <li><a href="#recipe-2020-05-15-vol-16-mai-tai">Mai Tai</a><span class="issue-ref">Lost Lake Community Thread: Volume 16</span></li>
 <li><a href="#recipe-2020-04-28-vol-12a-margarita">MARGARITA!</a><span class="issue-ref">Lost Lake Community Thread: Volume 12</span></li>
+<li><a href="#recipe-2020-05-22-vol-17-morgan-s-50-50-backyard-herb-martini">Morgan's 50/50 Backyard Herb Martini</a><span class="issue-ref">Lost Lake Community Thread: Volume 17</span></li>
 <li><a href="#recipe-2020-05-22-vol-17-morgan-s-mish-mash-mojito-caballito">Morgan's Mish-Mash Mojito Caballito</a><span class="issue-ref">Lost Lake Community Thread: Volume 17</span></li>
 <li><a href="#recipe-2020-05-22-vol-17-morgan-s-oaxacan-old-fashioned">Morgan's Oaxacan Old Fashioned</a><span class="issue-ref">Lost Lake Community Thread: Volume 17</span></li>
 <li><a href="#recipe-2020-05-05-vol-14-mystery-gardenia-fat-washed-technique">Mystery Gardenia (fat washed technique)</a><span class="issue-ref">Lost Lake Community Thread: Volume 14</span></li>
@@ -1639,26 +1607,32 @@ Lemon swath<br/>
 <li><a href="#recipe-2020-03-24-vol-02-not-quite-jb">Not Quite JB</a><span class="issue-ref">Lost Lake Community Thread: Volume 2</span></li>
 <li><a href="#recipe-2020-05-07-vol-15-nui-nui-1937">Nui Nui (1937)</a><span class="issue-ref">Lost Lake Community Thread: Volume 15</span></li>
 <li><a href="#recipe-2020-03-24-vol-02-ode-to-mama">Ode to Mama</a><span class="issue-ref">Lost Lake Community Thread: Volume 2</span></li>
+<li><a href="#recipe-2020-04-02-vol-05-old-fashioned">Old-Fashioned</a><span class="issue-ref">Lost Lake Community Thread: Volume 5</span></li>
 <li><a href="#recipe-2020-05-15-vol-16-on-christmas-island">On Christmas Island</a><span class="issue-ref">Lost Lake Community Thread: Volume 16</span></li>
 <li><a href="#recipe-2020-04-02-vol-05-painkiller-3">Painkiller #3</a><span class="issue-ref">Lost Lake Community Thread: Volume 5</span></li>
 <li><a href="#recipe-2020-05-05-vol-14-pearl-diver-s-punch">Pearl Diver’s Punch</a><span class="issue-ref">Lost Lake Community Thread: Volume 14</span></li>
 <li><a href="#recipe-2020-03-24-vol-02-picnic-ti-punch">Picnic Ti Punch</a><span class="issue-ref">Lost Lake Community Thread: Volume 2</span></li>
 <li><a href="#recipe-2020-05-07-vol-15-prawn-s-own-grog">Prawn’s Own Grog</a><span class="issue-ref">Lost Lake Community Thread: Volume 15</span></li>
+<li><a href="#recipe-2020-04-21-vol-10-queen-s-park-swizzle">Queen's Park Swizzle</a><span class="issue-ref">Lost Lake Community Thread: Volume 10</span></li>
 <li><a href="#recipe-2020-04-21-vol-10-remember-the-alimony">Remember the Alimony</a><span class="issue-ref">Lost Lake Community Thread: Volume 10</span></li>
 <li><a href="#recipe-2020-04-16-vol-08b-ruby-mae-s-second-surfing-bird">Ruby Mae’s Second Surfing Bird</a><span class="issue-ref">Lost Lake Community Thread: Volume 8</span></li>
 <li><a href="#recipe-2020-04-16-vol-08b-rum-river-mystic">Rum River Mystic</a><span class="issue-ref">Lost Lake Community Thread: Volume 8</span></li>
 <li><a href="#recipe-2020-05-15-vol-16-saturn">Saturn</a><span class="issue-ref">Lost Lake Community Thread: Volume 16</span></li>
 <li><a href="#recipe-2020-03-31-vol-04-sherry-no-no">Sherry No-No</a><span class="issue-ref">Lost Lake Community Thread: Volume 4</span></li>
 <li><a href="#recipe-2020-03-31-vol-04-some-days-last-a-long-time">Some Days Last a Long Time</a><span class="issue-ref">Lost Lake Community Thread: Volume 4</span></li>
+<li><a href="#recipe-2020-03-20-vol-01-welcome-something-from-nothing">SOMETHING FROM NOTHING</a><span class="issue-ref">Welcome to the Lost Lake Community Thread!</span></li>
 <li><a href="#recipe-2020-03-31-vol-04-spinning-in-infinity">Spinning in Infinity</a><span class="issue-ref">Lost Lake Community Thread: Volume 4</span></li>
 <li><a href="#recipe-2020-04-07-vol-06-stranger-in-paradise">Stranger in Paradise</a><span class="issue-ref">Lost Lake Community Thread: Volume 6</span></li>
 <li><a href="#recipe-2020-05-07-vol-15-strawberry-a-frap">Strawberry A-Frap</a><span class="issue-ref">Lost Lake Community Thread: Volume 15</span></li>
+<li><a href="#recipe-2020-04-02-vol-05-three-of-strong">Three of Strong</a><span class="issue-ref">Lost Lake Community Thread: Volume 5</span></li>
 <li><a href="#recipe-2020-04-14-vol-08a-ti-punch">Ti’ Punch</a><span class="issue-ref">Lost Lake Community Thread: Volume 8</span></li>
 <li><a href="#recipe-2020-04-21-vol-10-topo-ti-punch">Topo-Ti Punch</a><span class="issue-ref">Lost Lake Community Thread: Volume 10</span></li>
 <li><a href="#recipe-2020-04-21-vol-10-toronto">Toronto</a><span class="issue-ref">Lost Lake Community Thread: Volume 10</span></li>
 <li><a href="#recipe-2020-03-31-vol-04-trader-vic-s-1944-mai-tai-or-as-close-as-we-can-get">Trader Vic's 1944 Mai Tai (or as close as we can get)</a><span class="issue-ref">Lost Lake Community Thread: Volume 4</span></li>
 <li><a href="#recipe-2020-05-05-vol-14-traditional-gardenia-mix">TRADITIONAL GARDENIA MIX</a><span class="issue-ref">Lost Lake Community Thread: Volume 14</span></li>
+<li><a href="#recipe-2020-03-31-vol-04-vegan-chocolate-mug-cake">Vegan Chocolate Mug Cake</a><span class="issue-ref">Lost Lake Community Thread: Volume 4</span></li>
 <li><a href="#recipe-2020-05-07-vol-15-waikiki-at-dusk-forever">Waikiki at Dusk Forever</a><span class="issue-ref">Lost Lake Community Thread: Volume 15</span></li>
+<li><a href="#recipe-2020-04-23-vol-11-who-invented-the-banana-boulevardier">Who Invented the Banana Boulevardier?</a><span class="issue-ref">Lost Lake Community Thread: Volume 11</span></li>
 <li><a href="#recipe-2020-04-09-vol-07-world-s-best-cup-of-coffee">World's Best Cup of Coffee</a><span class="issue-ref">Lost Lake Community Thread: Volume 7</span></li>
 <li><a href="#recipe-2020-03-26-vol-03-your-special-island">Your Special Island</a><span class="issue-ref">Lost Lake Community Thread: Volume 3</span></li>
 <li><a href="#recipe-2020-05-07-vol-15-zombie-1934">Zombie (1934)</a><span class="issue-ref">Lost Lake Community Thread: Volume 15</span></li>
