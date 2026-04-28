@@ -6,7 +6,7 @@ import markdown
 
 ROOT = Path(__file__).parent
 NEWSLETTERS = ROOT / "newsletters"
-OUT = ROOT / "lost-lake-cookbook.html"
+OUT = ROOT / "index.html"
 
 CSS = """
 :root {
