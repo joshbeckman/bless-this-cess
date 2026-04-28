@@ -3,6 +3,7 @@ import re
 from pathlib import Path
 
 import markdown
+from bs4 import BeautifulSoup, NavigableString, Tag
 
 ROOT = Path(__file__).parent
 NEWSLETTERS = ROOT / "newsletters"
@@ -15,6 +16,7 @@ CSS = """
   --accent: #c44536;
   --muted: #8a7a6c;
   --rule: #d9cfc1;
+  --card: #fffaf0;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -67,6 +69,17 @@ nav.toc li { margin: 0.2rem 0; break-inside: avoid; }
 nav.toc a { color: var(--ink); text-decoration: none; }
 nav.toc a:hover { color: var(--accent); text-decoration: underline; }
 nav.toc .date { color: var(--muted); font-size: 0.85em; }
+nav.toc .recipe-link {
+  display: block;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--rule);
+  column-span: all;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
 
 article.issue {
   margin-bottom: 4rem;
@@ -110,6 +123,95 @@ article.issue a {
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
 }
+
+.recipe {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
+  margin: 2rem 0;
+  padding: 1.5rem 1.75rem;
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) 2fr;
+  gap: 1.25rem 1.75rem;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.recipe .recipe-title {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: 1.35rem;
+  color: var(--accent);
+  letter-spacing: 0.01em;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 0.5rem;
+}
+.recipe .ingredients {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: "Iowan Old Style", Georgia, serif;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.recipe .ingredients li {
+  padding: 0.3rem 0;
+  border-bottom: 1px dotted var(--rule);
+}
+.recipe .ingredients li:last-child { border-bottom: none; }
+.recipe .ingredients strong { color: var(--ink); }
+.recipe .method {
+  font-style: italic;
+  color: #4a3a2c;
+  line-height: 1.65;
+}
+.recipe .method em { font-style: normal; }
+.recipe .method p { margin: 0 0 0.75rem; }
+.recipe .method p:last-child { margin-bottom: 0; }
+
+@media (max-width: 600px) {
+  .recipe { grid-template-columns: 1fr; }
+  .recipe .recipe-title { padding-bottom: 0.4rem; }
+}
+
+section.recipe-index {
+  margin-top: 5rem;
+  padding-top: 3rem;
+  border-top: 2px solid var(--rule);
+  break-before: page;
+}
+section.recipe-index h2 {
+  font-size: 1.6rem;
+  margin: 0 0 1.5rem;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+section.recipe-index ol {
+  columns: 2;
+  column-gap: 2.5rem;
+  padding-left: 1.25rem;
+  margin: 0;
+}
+section.recipe-index li {
+  margin: 0.3rem 0;
+  break-inside: avoid;
+  padding-right: 0.5rem;
+}
+section.recipe-index a {
+  color: var(--ink);
+  text-decoration: none;
+}
+section.recipe-index a:hover { color: var(--accent); text-decoration: underline; }
+section.recipe-index .issue-ref {
+  color: var(--muted);
+  font-size: 0.8em;
+  display: block;
+  margin-top: 0.1rem;
+}
+
 .back-to-top {
   display: block;
   text-align: center;
@@ -126,6 +228,14 @@ article.issue a {
   nav.toc { break-after: page; }
   article.issue { break-before: page; border: none; padding: 0; margin: 0 0 2rem; }
   article.issue img { max-height: 4in; box-shadow: none; }
+  .recipe {
+    box-shadow: none;
+    background: #fff;
+    border: 1px solid #999;
+    border-left: 3px solid #444;
+  }
+  .recipe .recipe-title { color: #000; }
+  section.recipe-index { break-before: page; }
   .back-to-top { display: none; }
   a { color: inherit; text-decoration: none; }
 }
@@ -149,43 +259,182 @@ def extract_title(md_text: str) -> tuple[str, str]:
     return title, date
 
 
-def render_issue(path: Path) -> tuple[str, str, str, str]:
-    """Return (slug, title, date, body_html) for a newsletter file."""
+def split_by_br(p: Tag) -> list[list]:
+    """Split a paragraph's children into segments separated by <br/> tags."""
+    segments: list[list] = [[]]
+    for child in p.children:
+        if isinstance(child, Tag) and child.name == "br":
+            segments.append([])
+        else:
+            segments[-1].append(child)
+    return segments
+
+
+def segment_text(segment: list) -> str:
+    return "".join(
+        str(n) if isinstance(n, NavigableString) else n.get_text() for n in segment
+    ).strip()
+
+
+def segment_html(segment: list) -> str:
+    return "".join(str(n) for n in segment).strip()
+
+
+def first_meaningful(segment: list):
+    for n in segment:
+        if isinstance(n, NavigableString):
+            if n.strip():
+                return n
+        else:
+            return n
+    return None
+
+
+def is_recipe_paragraph(p: Tag) -> bool:
+    """Recipe = <p> starting with <strong> title, br-separated ingredients, italic method."""
+    segments = split_by_br(p)
+    if len(segments) < 3:
+        return False
+    head = first_meaningful(segments[0])
+    if not (isinstance(head, Tag) and head.name == "strong"):
+        return False
+    # Title-only first segment (the <strong> is essentially the whole segment)
+    title_text = segment_text(segments[0])
+    strong_text = head.get_text().strip()
+    if title_text != strong_text:
+        return False
+    # The last non-empty segment should contain an <em> (the italic method).
+    # Walk back skipping empties just in case.
+    last = None
+    for seg in reversed(segments):
+        if segment_text(seg):
+            last = seg
+            break
+    if last is None:
+        return False
+    has_em = any(isinstance(n, Tag) and n.name == "em" for n in last)
+    return has_em
+
+
+def extract_recipe(p: Tag) -> dict:
+    segments = split_by_br(p)
+    title = first_meaningful(segments[0]).get_text().strip()
+    # Identify the index of the last non-empty segment (the method)
+    method_idx = len(segments) - 1
+    while method_idx > 0 and not segment_text(segments[method_idx]):
+        method_idx -= 1
+    ingredients = []
+    for seg in segments[1:method_idx]:
+        html = segment_html(seg)
+        if html:
+            ingredients.append(html)
+    method_html = segment_html(segments[method_idx])
+    # Strip wrapping <em> if the entire method is one italic block
+    m = re.fullmatch(r"<em>(.*)</em>", method_html, flags=re.DOTALL)
+    if m:
+        method_html = m.group(1)
+    return {"title": title, "ingredients": ingredients, "method_html": method_html}
+
+
+def render_recipe_card(recipe: dict, slug: str) -> str:
+    ingredients_html = "\n".join(f"<li>{ing}</li>" for ing in recipe["ingredients"])
+    return (
+        f'<div class="recipe" id="{slug}">'
+        f'<h3 class="recipe-title">{recipe["title"]}</h3>'
+        f'<ul class="ingredients">{ingredients_html}</ul>'
+        f'<div class="method"><p>{recipe["method_html"]}</p></div>'
+        f"</div>"
+    )
+
+
+def transform_recipes(
+    body_html: str, issue_slug: str, issue_title: str, collected: list
+) -> str:
+    soup = BeautifulSoup(body_html, "html.parser")
+    seen_slugs: set[str] = set()
+    for p in list(soup.find_all("p")):
+        if not is_recipe_paragraph(p):
+            continue
+        recipe = extract_recipe(p)
+        base = slugify(recipe["title"])
+        rslug = f"recipe-{issue_slug}-{base}"
+        # Disambiguate within an issue (e.g., two simple syrup variants)
+        i = 2
+        while rslug in seen_slugs:
+            rslug = f"recipe-{issue_slug}-{base}-{i}"
+            i += 1
+        seen_slugs.add(rslug)
+        collected.append(
+            {
+                "title": recipe["title"],
+                "slug": rslug,
+                "issue_slug": issue_slug,
+                "issue_title": issue_title,
+            }
+        )
+        replacement = BeautifulSoup(render_recipe_card(recipe, rslug), "html.parser")
+        p.replace_with(replacement)
+    return str(soup)
+
+
+def render_issue(path: Path, recipes: list) -> tuple[str, str, str, str]:
     md_text = path.read_text(encoding="utf-8")
     title, date = extract_title(md_text)
-    # Strip the H1 + date from body — we render those ourselves with the slug anchor
-    body_md = re.sub(
-        r"\A#\s.+\n\n\*\d{4}-\d{2}-\d{2}\*\n\n", "", md_text, count=1
-    )
+    body_md = re.sub(r"\A#\s.+\n\n\*\d{4}-\d{2}-\d{2}\*\n\n", "", md_text, count=1)
     body_html = markdown.markdown(
         body_md, extensions=["extra", "sane_lists", "nl2br"]
     )
-    # Images in markdown are relative to newsletters/, but the combined HTML lives at the project root
     body_html = body_html.replace('src="../images/', 'src="images/')
     slug = slugify(path.stem)
+    body_html = transform_recipes(body_html, slug, title, recipes)
     return slug, title, date, body_html
+
+
+def render_recipe_index(recipes: list) -> str:
+    if not recipes:
+        return ""
+    sorted_recipes = sorted(recipes, key=lambda r: r["title"].lower())
+    items = []
+    for r in sorted_recipes:
+        items.append(
+            f'<li><a href="#{r["slug"]}">{r["title"]}</a>'
+            f'<span class="issue-ref">{r["issue_title"]}</span></li>'
+        )
+    return (
+        '<section class="recipe-index" id="recipe-index">\n'
+        "<h2>Recipe Index</h2>\n"
+        "<ol>\n" + "\n".join(items) + "\n</ol>\n"
+        "</section>"
+    )
 
 
 def main():
     files = sorted(NEWSLETTERS.glob("*.md"))
-    issues = [render_issue(p) for p in files]
+    recipes: list = []
+    issues = [render_issue(p, recipes) for p in files]
 
     toc_items = "\n".join(
         f'<li><a href="#{slug}">{title}</a> <span class="date">{date}</span></li>'
         for slug, title, date, _ in issues
     )
+    if recipes:
+        toc_items += (
+            '\n<li class="recipe-link">'
+            '<a href="#recipe-index">Recipe Index →</a></li>'
+        )
 
     article_blocks = []
     for slug, title, date, body in issues:
         article_blocks.append(
             f'<article class="issue" id="{slug}">\n'
-            f'<h1>{title}</h1>\n'
-            f'<p><em>{date}</em></p>\n'
+            f"<h1>{title}</h1>\n"
+            f"<p><em>{date}</em></p>\n"
             f"{body}\n"
             f'<p class="back-to-top"><a href="#top">↑ back to contents</a></p>\n'
             f"</article>"
         )
     articles = "\n\n".join(article_blocks)
+    recipe_index_html = render_recipe_index(recipes)
 
     html = f"""<!doctype html>
 <html lang="en">
@@ -209,12 +458,16 @@ def main():
 </ol>
 </nav>
 {articles}
+{recipe_index_html}
 </div>
 </body>
 </html>
 """
     OUT.write_text(html, encoding="utf-8")
-    print(f"wrote {OUT.name} ({len(html):,} chars, {len(issues)} issues)")
+    print(
+        f"wrote {OUT.name} ({len(html):,} chars, {len(issues)} issues, "
+        f"{len(recipes)} recipes)"
+    )
 
 
 if __name__ == "__main__":
