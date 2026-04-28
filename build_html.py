@@ -307,7 +307,8 @@ def first_meaningful(segment: list):
 # Ingredient lines virtually always start with a quantity glyph (digit or fraction).
 INGREDIENT_LEAD = re.compile(r"^[\s\W]*[\d¼½¾⅓⅔⅛⅜⅝⅞]")
 SECTION_METHOD = {"directions", "method", "instructions", "preparation", "to make"}
-SECTION_OTHER = {"equipment", "notes", "garnish"}
+SECTION_OTHER = {"equipment", "notes", "garnish", "optional"}
+STEP_LEAD = re.compile(r"^[\s]*[-•*]\s*\S")
 
 
 def looks_like_ingredient(text: str) -> bool:
@@ -335,8 +336,9 @@ def is_recipe_paragraph(p: Tag) -> bool:
     head = first_meaningful(segments[0])
     if not (isinstance(head, Tag) and head.name == "strong"):
         return False
-    if segment_text(segments[0]) != head.get_text().strip():
-        return False
+    # The first segment may carry a parenthetical after the <strong> title
+    # (e.g., "**Dalgona coffee** (one serving)"). Only require that the
+    # paragraph leads with bold; the strong's text is the title.
     middle = segments[1:]
     has_em = any(
         any(isinstance(n, Tag) and n.name == "em" for n in seg) for seg in middle
@@ -398,49 +400,101 @@ def extract_recipe(p: Tag) -> dict:
     }
 
 
-def is_continuation_para(p) -> bool:
-    """A paragraph that extends the preceding recipe (more ingredients, or a
-    'Directions' / 'Equipment' section). Bails on anything containing images
-    or a new <strong> title."""
-    if not isinstance(p, Tag) or p.name != "p":
-        return False
-    if p.find("img") or p.find("strong"):
-        return False
+def detect_section_header(p: Tag) -> tuple[str | None, list]:
+    """If the paragraph leads with a section header (bold or plain text),
+    return (section_name, body_segments_after_header). Otherwise (None, [])."""
     segments = non_empty(split_by_br(p))
     if not segments:
-        return False
-    first_text = segment_text(segments[0]).strip().lower().rstrip(":")
-    if first_text in SECTION_METHOD or first_text in SECTION_OTHER:
-        return True
-    return all(looks_like_ingredient(segment_text(s)) for s in segments)
-
-
-def absorb_continuation(recipe: dict, p: Tag) -> None:
-    segments = non_empty(split_by_br(p))
-    if not segments:
-        return
+        return None, []
+    head = first_meaningful(segments[0])
+    if isinstance(head, Tag) and head.name == "strong":
+        label = (
+            head.get_text().strip().lower().split("(")[0].strip().rstrip(":")
+        )
+        if label in SECTION_METHOD:
+            return "method", segments[1:]
+        if label in SECTION_OTHER:
+            return label, segments[1:]
+        return None, []
     first_text = segment_text(segments[0]).strip().lower().rstrip(":")
     if first_text in SECTION_METHOD:
-        steps = []
-        for s in segments[1:]:
-            line = segment_html(s)
-            line = re.sub(r"^[-•]\s*", "", line).strip()
-            if line:
-                steps.append(line)
-        method_block = "<br/>".join(steps)
-        recipe["method_html"] = (
-            recipe["method_html"] + "<br/><br/>" + method_block
-            if recipe["method_html"]
-            else method_block
-        )
-    elif first_text in SECTION_OTHER:
-        for s in segments[1:]:
-            recipe["ingredients"].append(
-                f'<span class="ing-section">{first_text}:</span> {segment_html(s)}'
-            )
+        return "method", segments[1:]
+    if first_text in SECTION_OTHER:
+        return first_text, segments[1:]
+    return None, []
+
+
+def append_method(recipe: dict, segments: list) -> None:
+    parts = []
+    for s in segments:
+        line = segment_html(s)
+        line = re.sub(r"^[-•*]\s*", "", line).strip()
+        if line:
+            parts.append(line)
+    if not parts:
+        return
+    block = "<br/>".join(parts)
+    if recipe["method_html"]:
+        recipe["method_html"] += "<br/><br/>" + block
     else:
-        for s in segments:
-            recipe["ingredients"].append(segment_html(s))
+        recipe["method_html"] = block
+
+
+def append_ingredients(recipe: dict, segments: list, label: str | None = None) -> None:
+    for s in segments:
+        text = segment_text(s)
+        if not text:
+            continue
+        html = segment_html(s)
+        if label:
+            recipe["ingredients"].append(
+                f'<span class="ing-section">{label}:</span> {html}'
+            )
+        else:
+            recipe["ingredients"].append(html)
+
+
+def continuation_section(p, current: str, method_via_header: bool) -> str | None:
+    """What section does this sibling paragraph contribute to (if any)?
+
+    Method-extension via prose requires that we've already crossed an explicit
+    "Directions"/"Method"/etc. header. Otherwise narrative paragraphs after a
+    recipe with an inline italic method (e.g., the transitional prose after
+    Lil Saint Nog) would be wrongly swallowed into the method block.
+    """
+    if not isinstance(p, Tag) or p.name != "p":
+        return None
+    if p.find("img"):
+        return None
+    section, _body = detect_section_header(p)
+    if section is not None:
+        return section
+    if p.find("strong"):
+        return None
+    segments = non_empty(split_by_br(p))
+    if not segments:
+        return None
+    if current == "method" and method_via_header:
+        return "method"
+    if current != "method" and all(
+        looks_like_ingredient(segment_text(s)) for s in segments
+    ):
+        return current
+    return None
+
+
+def absorb(recipe: dict, p: Tag, section: str) -> None:
+    header_section, body = detect_section_header(p)
+    if header_section is not None:
+        segments = body
+    else:
+        segments = non_empty(split_by_br(p))
+    if section == "method":
+        append_method(recipe, segments)
+    elif section in SECTION_OTHER:
+        append_ingredients(recipe, segments, label=section)
+    else:
+        append_ingredients(recipe, segments)
 
 
 def render_recipe_card(recipe: dict, slug: str) -> str:
@@ -474,13 +528,28 @@ def transform_recipes(
             continue
         recipe = extract_recipe(p)
 
-        # Absorb continuation paragraphs (mug-cake style: ingredients/method
-        # split across multiple <p> blocks). Only walk forward through siblings;
-        # stop on the first non-continuation.
+        # Absorb continuation paragraphs (mug-cake / dalgona style: a recipe's
+        # ingredients/method split across multiple <p> blocks, sometimes with
+        # bold section headers like "Equipment", "Directions", "Optional").
+        # Track the current section so once a "Directions" header appears,
+        # subsequent prose paragraphs continue extending the method.
         absorbed = []
+        current_section = "method" if recipe["method_html"] else "ingredients"
+        method_via_header = False
         sib = p.find_next_sibling()
-        while sib is not None and is_continuation_para(sib):
-            absorb_continuation(recipe, sib)
+        while sib is not None:
+            section = continuation_section(sib, current_section, method_via_header)
+            if section is None:
+                break
+            absorb(recipe, sib, section)
+            if section == "method":
+                # Only mark "method via header" when the absorbed paragraph
+                # actually carried a header — not when prose extends an
+                # already-headered method.
+                header_section, _ = detect_section_header(sib)
+                if header_section == "method":
+                    method_via_header = True
+            current_section = section
             absorbed.append(sib)
             sib = sib.find_next_sibling()
 
